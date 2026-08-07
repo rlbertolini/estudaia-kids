@@ -1,15 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const botoes = document.querySelectorAll("button");
+    let nome = localStorage.getItem("nomeAluno");
 
-    botoes.forEach((botao) => {
-        botao.addEventListener("click", () => {
+    if (!nome) {
 
-            alert(
-                "🚧 Esta função será construída nas próximas aulas.\n\nBem-vindo ao EstudaIA Kids!"
-            );
+        nome = prompt("Qual é o seu nome?");
 
-        });
-    });
+        if (nome && nome.trim() !== "") {
+            localStorage.setItem("nomeAluno", nome);
+        } else {
+            nome = "Estudante";
+        }
+
+    }
+
+    const titulo = document.querySelector(".perfil h2");
+
+    if (titulo) {
+        titulo.innerHTML = `Olá, ${nome}! 👋`;
+    }
 
 });
