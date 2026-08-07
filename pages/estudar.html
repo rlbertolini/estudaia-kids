@@ -1,49 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Estudar por Vídeo</title>
+
+<title>Professor Particular Virtual</title>
+
 <link rel="stylesheet" href="../style.css">
+
 </head>
 
 <body>
 
 <header>
-<h1>📹 Estudar por Vídeo</h1>
-<p>Professor Particular Virtual</p>
+
+<h1>👩‍🏫 Professor Particular Virtual</h1>
+
+<p>Estude utilizando vídeos do livro.</p>
+
 </header>
 
 <main>
 
 <section class="card">
 
-<h2>Escolha um vídeo</h2>
+<h2>🎥 Escolha o vídeo</h2>
 
 <input
 type="file"
-accept="video/*"
-id="video">
+id="video"
+accept="video/*">
 
-<br><br>
+<p id="nomeVideo">
+
+Nenhum vídeo selecionado.
+
+</p>
+
+</section>
+
+<section class="card">
+
+<h2>🤖 Professor Virtual</h2>
 
 <button id="copiar">
+
 📋 Copiar Prompt
+
 </button>
 
 <br><br>
 
-<button id="iniciar">
-🚀 Iniciar Estudo
-</button>
+<button id="abrir">
 
-<br><br>
+💬 Abrir ChatGPT
 
-<button onclick="window.location='../index.html'">
-⬅ Voltar
 </button>
 
 </section>
+
+<button onclick="window.location='../index.html'">
+
+⬅ Voltar
+
+</button>
 
 </main>
 
