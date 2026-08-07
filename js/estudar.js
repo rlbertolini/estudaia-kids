@@ -11,7 +11,16 @@ nome.textContent=video.files[0].name;
 
 });
 
-const promptProfessor=`COLE AQUI O PROMPT COMPLETO`;
+let promptProfessor = "";
+
+fetch("../prompts/professor.txt")
+  .then(resposta => resposta.text())
+  .then(texto => {
+      promptProfessor = texto;
+  })
+  .catch(() => {
+      alert("Não foi possível carregar o prompt.");
+  });
 
 document
 .getElementById("copiar")
