@@ -21,3 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+const botoes = document.querySelectorAll(".menu button");
+
+if(botoes.length>0){
+
+botoes[0].onclick=()=>{
+
+window.location="pages/estudar.html";
+
+}
+
+}
