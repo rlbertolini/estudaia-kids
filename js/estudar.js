@@ -1,3 +1,18 @@
+const estudo = JSON.parse(
+localStorage.getItem("estudoAtual")
+);
+
+if(estudo){
+
+document
+.getElementById("tituloEstudo")
+.textContent=estudo.nome;
+
+document
+.getElementById("videoAtual")
+.textContent=estudo.video;
+
+}
 const video = document.getElementById("video");
 const nome = document.getElementById("nomeVideo");
 
