@@ -77,6 +77,12 @@
             font-weight: bold;
         }
 
+        .page-subtitle {
+            color: #68758a;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
         button {
             border: none;
             border-radius: 14px;
@@ -88,6 +94,11 @@
 
         button:hover {
             opacity: 0.9;
+        }
+
+        button:disabled {
+            background: #b9c2d3;
+            cursor: not-allowed;
         }
 
         .primary {
@@ -107,7 +118,11 @@
 
         .subjects {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(220px, 1fr)
+            );
+
             gap: 18px;
         }
 
@@ -186,6 +201,153 @@
             margin-top: 6px;
         }
 
+        .chapter-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .material-list {
+            margin-top: 18px;
+        }
+
+        .material-box {
+            background: white;
+            border-radius: 14px;
+            padding: 15px;
+            border: 1px solid #e3e9f5;
+            margin-top: 10px;
+        }
+
+        .material-name {
+            font-weight: bold;
+            word-break: break-word;
+        }
+
+        .material-type {
+            color: #68758a;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .material-size {
+            color: #68758a;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .material-actions {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .upload-section {
+            background: #f8faff;
+            border-radius: 20px;
+            padding: 22px;
+            border: 2px solid #e3e9f5;
+            margin-bottom: 20px;
+        }
+
+        .upload-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .upload-description {
+            color: #68758a;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .upload-grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(200px, 1fr)
+            );
+
+            gap: 12px;
+        }
+
+        .upload-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 130px;
+            border: 2px dashed #9db2e8;
+            border-radius: 18px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .upload-button:hover {
+            background: #f1f5ff;
+        }
+
+        .upload-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+
+        .upload-label {
+            font-weight: bold;
+        }
+
+        .upload-help {
+            color: #68758a;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .ai-section {
+            background: #eef7ff;
+            border-radius: 20px;
+            padding: 22px;
+            margin-top: 20px;
+        }
+
+        .ai-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .ai-text {
+            color: #315675;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .warning {
+            background: #fff8e6;
+            color: #6d5a28;
+            border-radius: 15px;
+            padding: 16px;
+            line-height: 1.6;
+            margin-top: 18px;
+        }
+
+        .success {
+            background: #e7f7eb;
+            color: #256238;
+            border-radius: 15px;
+            padding: 15px;
+            line-height: 1.5;
+            margin-top: 15px;
+            display: none;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -238,39 +400,15 @@
             flex: 1;
         }
 
-        .material-box {
-            margin-top: 18px;
-            background: white;
-            border-radius: 14px;
-            padding: 15px;
-            border: 1px solid #e3e9f5;
-        }
-
-        .material-name {
+        .badge {
+            display: inline-block;
+            background: #e8edf6;
+            color: #526079;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 12px;
             font-weight: bold;
-            word-break: break-word;
-        }
-
-        .material-type {
-            color: #68758a;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        .material-actions {
-            margin-top: 12px;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .info {
-            margin-top: 25px;
-            padding: 17px;
-            background: #eef7ff;
-            color: #315675;
-            border-radius: 15px;
-            line-height: 1.6;
+            margin-top: 8px;
         }
 
         @media(max-width:600px) {
@@ -296,6 +434,14 @@
                 width: 100%;
             }
 
+            .chapter-actions {
+                width: 100%;
+            }
+
+            .chapter-actions button {
+                flex: 1;
+            }
+
         }
 
     </style>
@@ -309,7 +455,9 @@
 <div class="app">
 
 
+    <!-- ================================================= -->
     <!-- CABEÇALHO -->
+    <!-- ================================================= -->
 
     <header class="header">
 
@@ -330,7 +478,7 @@
 
 
     <!-- ================================================= -->
-    <!-- TELA PRINCIPAL -->
+    <!-- TELA 1 - MATÉRIAS -->
     <!-- ================================================= -->
 
     <section
@@ -362,16 +510,16 @@
 
         <div class="info">
 
-            💡 <strong>Como vamos organizar:</strong>
+            💡 <strong>Organização:</strong>
 
-            cada matéria poderá ter seus próprios capítulos
+            cada matéria terá seus próprios capítulos
             e materiais.
 
             <br><br>
 
-            Assim você poderá adicionar os conteúdos
-            durante o ano e excluir os materiais antigos
-            quando não forem mais necessários.
+            Você poderá manter os conteúdos durante o ano
+            e excluir os materiais antigos quando não
+            forem mais necessários.
 
         </div>
 
@@ -380,12 +528,13 @@
 
 
     <!-- ================================================= -->
-    <!-- TELA DA MATÉRIA -->
+    <!-- TELA 2 - CAPÍTULOS -->
     <!-- ================================================= -->
 
     <section
         id="materia"
         class="screen">
+
 
         <div class="top-bar">
 
@@ -398,10 +547,11 @@
 
                 <div
                     id="informacaoMateria"
-                    class="chapter-info">
+                    class="page-subtitle">
                 </div>
 
             </div>
+
 
             <button
                 class="primary"
@@ -435,12 +585,299 @@
 
 
 
+    <!-- ================================================= -->
+    <!-- TELA 3 - CAPÍTULO -->
+    <!-- ================================================= -->
+
+    <section
+        id="capitulo"
+        class="screen">
+
+
+        <div class="top-bar">
+
+            <div>
+
+                <div
+                    id="tituloCapitulo"
+                    class="page-title">
+                </div>
+
+                <div
+                    id="informacaoCapitulo"
+                    class="page-subtitle">
+                </div>
+
+            </div>
+
+
+            <button
+                class="secondary"
+                onclick="voltarParaMateria()">
+
+                ← Voltar
+
+            </button>
+
+        </div>
+
+
+
+        <!-- ============================================= -->
+        <!-- ENVIO DE MATERIAL -->
+        <!-- ============================================= -->
+
+        <div class="upload-section">
+
+            <div class="upload-title">
+
+                📚 Material do capítulo
+
+            </div>
+
+
+            <div class="upload-description">
+
+                Envie os materiais que sua filha deverá
+                estudar.
+
+                <br><br>
+
+                Você poderá adicionar PDF, vídeo ou imagens.
+
+                <br><br>
+
+                <strong>
+                    O conteúdo enviado será utilizado
+                    posteriormente como fonte para criação
+                    das questões.
+                </strong>
+
+            </div>
+
+
+            <div class="upload-grid">
+
+
+                <!-- PDF -->
+
+                <label
+                    class="upload-button"
+                    for="arquivoPDF">
+
+                    <div class="upload-icon">
+                        📄
+                    </div>
+
+                    <div class="upload-label">
+                        Adicionar PDF
+                    </div>
+
+                    <div class="upload-help">
+                        Livro ou capítulo
+                    </div>
+
+                    <input
+                        type="file"
+                        id="arquivoPDF"
+                        accept=".pdf"
+                        onchange="adicionarArquivo('pdf')">
+
+                </label>
+
+
+
+                <!-- VÍDEO -->
+
+                <label
+                    class="upload-button"
+                    for="arquivoVideo">
+
+                    <div class="upload-icon">
+                        🎥
+                    </div>
+
+                    <div class="upload-label">
+                        Adicionar vídeo
+                    </div>
+
+                    <div class="upload-help">
+                        Aula ou explicação
+                    </div>
+
+                    <input
+                        type="file"
+                        id="arquivoVideo"
+                        accept="video/*"
+                        onchange="adicionarArquivo('video')">
+
+                </label>
+
+
+
+                <!-- IMAGENS -->
+
+                <label
+                    class="upload-button"
+                    for="arquivoImagem">
+
+                    <div class="upload-icon">
+                        🖼️
+                    </div>
+
+                    <div class="upload-label">
+                        Adicionar imagens
+                    </div>
+
+                    <div class="upload-help">
+                        Fotos ou páginas
+                    </div>
+
+                    <input
+                        type="file"
+                        id="arquivoImagem"
+                        accept="image/*"
+                        multiple
+                        onchange="adicionarArquivo('imagem')">
+
+                </label>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================================= -->
+        <!-- LISTA DE MATERIAIS -->
+        <!-- ============================================= -->
+
+        <div class="upload-section">
+
+            <div class="upload-title">
+
+                📂 Materiais deste capítulo
+
+            </div>
+
+
+            <div
+                id="listaMateriaisCapitulo">
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================================= -->
+        <!-- IA -->
+        <!-- ============================================= -->
+
+        <div class="ai-section">
+
+            <div class="ai-title">
+
+                🤖 Próxima etapa: criar questionário
+
+            </div>
+
+
+            <div class="ai-text">
+
+                Depois que os materiais forem enviados,
+                o EstudaIA Kids poderá analisar o conteúdo
+                e preparar o banco de questões.
+
+                <br><br>
+
+                O sistema utilizará o seu prompt de
+                <strong>
+                    Professor Particular Virtual Adaptativo
+                </strong>.
+
+                <br><br>
+
+                Serão consideradas as regras de:
+
+                <br>
+
+                • questões inéditas;
+
+                <br>
+
+                • máximo de 50 questões no banco;
+
+                <br>
+
+                • questões fáceis, intermediárias e difíceis;
+
+                <br>
+
+                • diferentes tipos de questões;
+
+                <br>
+
+                • seleção adaptativa;
+
+                <br>
+
+                • histórico de desempenho.
+
+            </div>
+
+
+            <button
+                id="botaoPreparar"
+                class="primary"
+                onclick="prepararQuestionario()">
+
+                🤖 Preparar questionário
+
+            </button>
+
+
+            <div
+                id="mensagemPreparacao"
+                class="success">
+
+                ✅ Materiais registrados.
+
+                <br><br>
+
+                A conexão com o motor de IA será
+                construída na próxima etapa.
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="warning">
+
+            🔐 <strong>Área do responsável:</strong>
+
+            esta área é destinada a você.
+
+            <br><br>
+
+            Sua filha não precisará acessar essa tela
+            para responder às questões.
+
+        </div>
+
+
+    </section>
+
+
 </div>
 
 
 
 <!-- ================================================= -->
-<!-- MODAL NOVA MATÉRIA -->
+<!-- MODAL MATÉRIA -->
 <!-- ================================================= -->
 
 <div
@@ -452,6 +889,7 @@
         <div class="modal-title">
             📚 Nova matéria
         </div>
+
 
         <input
             id="nomeNovaMateria"
@@ -470,6 +908,7 @@
 
             </button>
 
+
             <button
                 class="primary"
                 onclick="criarMateria()">
@@ -487,7 +926,7 @@
 
 
 <!-- ================================================= -->
-<!-- MODAL NOVO CAPÍTULO -->
+<!-- MODAL CAPÍTULO -->
 <!-- ================================================= -->
 
 <div
@@ -499,6 +938,7 @@
         <div class="modal-title">
             📖 Novo capítulo
         </div>
+
 
         <input
             id="nomeNovoCapitulo"
@@ -516,6 +956,7 @@
                 Cancelar
 
             </button>
+
 
             <button
                 class="primary"
@@ -537,7 +978,7 @@
 
 
 /* =====================================================
-   BANCO LOCAL
+   DADOS
 ===================================================== */
 
 let dados = JSON.parse(
@@ -550,6 +991,8 @@ let dados = JSON.parse(
 
 
 let materiaAtual = null;
+
+let capituloAtual = null;
 
 
 
@@ -569,7 +1012,7 @@ function salvarDados() {
 
 
 /* =====================================================
-   MOSTRAR MATÉRIAS
+   MATÉRIAS
 ===================================================== */
 
 function mostrarMaterias() {
@@ -578,6 +1021,7 @@ function mostrarMaterias() {
         document.getElementById(
             "listaMaterias"
         );
+
 
     lista.innerHTML = "";
 
@@ -597,8 +1041,7 @@ function mostrarMaterias() {
                 </h2>
 
                 <p>
-                    Comece criando a primeira matéria
-                    para organizar os estudos.
+                    Comece criando a primeira matéria.
                 </p>
 
             </div>
@@ -616,6 +1059,7 @@ function mostrarMaterias() {
             const card =
                 document.createElement("div");
 
+
             card.className =
                 "subject-card";
 
@@ -631,11 +1075,15 @@ function mostrarMaterias() {
             card.innerHTML = `
 
                 <div class="subject-icon">
+
                     ${materia.icone || "📚"}
+
                 </div>
 
                 <div class="subject-name">
-                    ${materia.nome}
+
+                    ${escaparHTML(materia.nome)}
+
                 </div>
 
                 <div class="subject-info">
@@ -729,8 +1177,10 @@ function escolherIcone(nome) {
         return "📖";
     }
 
-    if (texto.includes("ciênc") ||
-        texto.includes("cienc")) {
+    if (
+        texto.includes("ciênc") ||
+        texto.includes("cienc")
+    ) {
         return "🔬";
     }
 
@@ -758,8 +1208,9 @@ function escolherIcone(nome) {
 
 function abrirMateria(indice) {
 
-    materiaAtual =
-        indice;
+    materiaAtual = indice;
+
+    capituloAtual = null;
 
 
     const materia =
@@ -769,7 +1220,9 @@ function abrirMateria(indice) {
     document.getElementById(
         "tituloMateria"
     ).textContent =
-        materia.icone + " " + materia.nome;
+        materia.icone +
+        " " +
+        materia.nome;
 
 
     document.getElementById(
@@ -788,6 +1241,11 @@ function abrirMateria(indice) {
 
 
     document.getElementById(
+        "capitulo"
+    ).classList.remove("active");
+
+
+    document.getElementById(
         "materia"
     ).classList.add("active");
 
@@ -796,7 +1254,7 @@ function abrirMateria(indice) {
 
 
 /* =====================================================
-   MOSTRAR CAPÍTULOS
+   CAPÍTULOS
 ===================================================== */
 
 function mostrarCapitulos() {
@@ -829,8 +1287,7 @@ function mostrarCapitulos() {
                 </h2>
 
                 <p>
-                    Adicione o primeiro capítulo
-                    desta matéria.
+                    Adicione o primeiro capítulo.
                 </p>
 
             </div>
@@ -848,6 +1305,7 @@ function mostrarCapitulos() {
             const card =
                 document.createElement("div");
 
+
             card.className =
                 "chapter-card";
 
@@ -861,7 +1319,7 @@ function mostrarCapitulos() {
                         <div class="chapter-name">
 
                             📖
-                            ${capitulo.nome}
+                            ${escaparHTML(capitulo.nome)}
 
                         </div>
 
@@ -874,7 +1332,8 @@ function mostrarCapitulos() {
 
                     </div>
 
-                    <div>
+
+                    <div class="chapter-actions">
 
                         <button
                             class="primary"
@@ -883,6 +1342,7 @@ function mostrarCapitulos() {
                             Abrir
 
                         </button>
+
 
                         <button
                             class="danger"
@@ -896,22 +1356,10 @@ function mostrarCapitulos() {
 
                 </div>
 
-
-                <div
-                    id="materiais-${indice}">
-
-                </div>
-
             `;
 
 
             lista.appendChild(card);
-
-
-            mostrarMateriais(
-                capitulo,
-                indice
-            );
 
         }
     );
@@ -978,84 +1426,104 @@ function criarCapitulo() {
 
 function abrirCapitulo(indice) {
 
+    capituloAtual = indice;
+
+
     const materia =
         dados.materias[materiaAtual];
 
 
     const capitulo =
-        materia.capitulos[indice];
+        materia.capitulos[
+            indice
+        ];
 
 
-    let mensagem =
+    document.getElementById(
+        "tituloCapitulo"
+    ).textContent =
         "📖 " +
-        capitulo.nome +
-        "\n\n";
+        capitulo.nome;
 
 
-    mensagem +=
-        "Aqui ficará a próxima etapa do sistema:\n\n";
+    document.getElementById(
+        "informacaoCapitulo"
+    ).textContent =
+        capitulo.materiais.length +
+        " material(is) cadastrado(s)";
 
 
-    mensagem +=
-        "📄 Enviar PDF\n";
+    document.getElementById(
+        "materia"
+    ).classList.remove("active");
 
 
-    mensagem +=
-        "🎥 Enviar vídeo\n";
+    document.getElementById(
+        "capitulo"
+    ).classList.add("active");
 
 
-    mensagem +=
-        "🖼️ Enviar imagens\n";
+    document.getElementById(
+        "mensagemPreparacao"
+    ).style.display = "none";
 
 
-    mensagem +=
-        "🤖 Criar questões com IA\n\n";
-
-
-    mensagem +=
-        "Vamos construir essa tela na próxima etapa.";
-
-
-    alert(mensagem);
+    mostrarMateriaisCapitulo();
 
 }
 
 
 
 /* =====================================================
-   MATERIAIS
+   MOSTRAR MATERIAIS
 ===================================================== */
 
-function mostrarMateriais(
-    capitulo,
-    indice
-) {
+function mostrarMateriaisCapitulo() {
 
     const area =
         document.getElementById(
-            "materiais-" + indice
+            "listaMateriaisCapitulo"
         );
 
 
-    if (!area) return;
+    area.innerHTML = "";
 
 
-    if (capitulo.materiais.length === 0) {
+    const capitulo =
+        dados.materias[
+            materiaAtual
+        ].capitulos[
+            capituloAtual
+        ];
+
+
+    if (
+        !capitulo ||
+        capitulo.materiais.length === 0
+    ) {
 
         area.innerHTML = `
 
-            <div
-                style="
-                    margin-top:15px;
-                    color:#68758a;
-                    font-size:14px;
-                ">
+            <div class="empty">
 
-                Nenhum material enviado ainda.
+                <div class="empty-icon">
+                    📂
+                </div>
+
+                <h3>
+                    Nenhum material enviado
+                </h3>
+
+                <p>
+                    Use os botões acima para
+                    adicionar o material.
+                </p>
 
             </div>
 
         `;
+
+        atualizarInformacaoCapitulo();
 
         return;
 
@@ -1063,39 +1531,46 @@ function mostrarMateriais(
 
 
     capitulo.materiais.forEach(
-        function(material, materialIndice) {
+        function(material, indice) {
 
-            const div =
+            const box =
                 document.createElement("div");
 
 
-            div.className =
+            box.className =
                 "material-box";
 
 
-            div.innerHTML = `
+            box.innerHTML = `
 
                 <div class="material-name">
 
-                    ${material.nome}
+                    ${iconeMaterial(material.tipo)}
+                    ${escaparHTML(material.nome)}
 
                 </div>
+
 
                 <div class="material-type">
 
-                    ${material.tipo}
+                    ${textoTipoMaterial(material.tipo)}
 
                 </div>
+
+
+                <div class="material-size">
+
+                    ${formatarTamanho(material.tamanho)}
+
+                </div>
+
 
                 <div class="material-actions">
 
                     <button
                         class="danger"
                         onclick="
-                            excluirMaterial(
-                                ${indice},
-                                ${materialIndice}
-                            )
+                            excluirMaterial(${indice})
                         ">
 
                         🗑️ Excluir
@@ -1107,10 +1582,163 @@ function mostrarMateriais(
             `;
 
 
-            area.appendChild(div);
+            area.appendChild(box);
 
         }
     );
+
+
+    atualizarInformacaoCapitulo();
+
+}
+
+
+
+/* =====================================================
+   ADICIONAR ARQUIVO
+===================================================== */
+
+function adicionarArquivo(tipo) {
+
+    let input;
+
+
+    if (tipo === "pdf") {
+
+        input =
+            document.getElementById(
+                "arquivoPDF"
+            );
+
+    }
+
+    else if (tipo === "video") {
+
+        input =
+            document.getElementById(
+                "arquivoVideo"
+            );
+
+    }
+
+    else {
+
+        input =
+            document.getElementById(
+                "arquivoImagem"
+            );
+
+    }
+
+
+    if (
+        !input ||
+        input.files.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    const arquivos =
+        Array.from(input.files);
+
+
+    const capitulo =
+        dados.materias[
+            materiaAtual
+        ].capitulos[
+            capituloAtual
+        ];
+
+
+    arquivos.forEach(
+        function(arquivo) {
+
+            capitulo.materiais.push({
+
+                nome: arquivo.name,
+
+                tipo: tipo,
+
+                tamanho: arquivo.size,
+
+                mimeType: arquivo.type,
+
+                adicionadoEm:
+                    new Date().toISOString()
+
+            });
+
+        }
+    );
+
+
+    salvarDados();
+
+
+    input.value = "";
+
+
+    mostrarMateriaisCapitulo();
+
+
+    alert(
+        arquivos.length === 1
+            ? "Material registrado com sucesso!"
+            : arquivos.length +
+              " materiais registrados com sucesso!"
+    );
+
+}
+
+
+
+/* =====================================================
+   EXCLUIR MATERIAL
+===================================================== */
+
+function excluirMaterial(indice) {
+
+    const capitulo =
+        dados.materias[
+            materiaAtual
+        ].capitulos[
+            capituloAtual
+        ];
+
+
+    const material =
+        capitulo.materiais[
+            indice
+        ];
+
+
+    const confirmar =
+        confirm(
+            "Deseja excluir o material:\n\n" +
+            material.nome +
+            "?"
+        );
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+    capitulo.materiais.splice(
+        indice,
+        1
+    );
+
+
+    salvarDados();
+
+    mostrarMateriaisCapitulo();
 
 }
 
@@ -1123,22 +1751,31 @@ function mostrarMateriais(
 function excluirCapitulo(indice) {
 
     const materia =
-        dados.materias[materiaAtual];
+        dados.materias[
+            materiaAtual
+        ];
 
 
     const capitulo =
-        materia.capitulos[indice];
+        materia.capitulos[
+            indice
+        ];
 
 
     const confirmar =
         confirm(
-            "Deseja realmente excluir o capítulo \"" +
+            "Deseja realmente excluir:\n\n" +
             capitulo.nome +
-            "\" e seus materiais?"
+            "\n\nTodos os materiais cadastrados " +
+            "nesse capítulo serão removidos da lista."
         );
 
 
-    if (!confirmar) return;
+    if (!confirmar) {
+
+        return;
+
+    }
 
 
     materia.capitulos.splice(
@@ -1158,52 +1795,43 @@ function excluirCapitulo(indice) {
 
 
 /* =====================================================
-   EXCLUIR MATERIAL
+   PREPARAR QUESTIONÁRIO
 ===================================================== */
 
-function excluirMaterial(
-    indiceCapitulo,
-    indiceMaterial
-) {
-
-    const materia =
-        dados.materias[materiaAtual];
-
+function prepararQuestionario() {
 
     const capitulo =
-        materia.capitulos[
-            indiceCapitulo
+        dados.materias[
+            materiaAtual
+        ].capitulos[
+            capituloAtual
         ];
 
 
-    const material =
-        capitulo.materiais[
-            indiceMaterial
-        ];
+    if (
+        !capitulo ||
+        capitulo.materiais.length === 0
+    ) {
 
-
-    const confirmar =
-        confirm(
-            "Excluir o material \"" +
-            material.nome +
-            "\"?"
+        alert(
+            "Adicione pelo menos um material " +
+            "antes de preparar o questionário."
         );
 
+        return;
 
-    if (!confirmar) return;
-
-
-    capitulo.materiais.splice(
-        indiceMaterial,
-        1
-    );
+    }
 
 
-    salvarDados();
+    document.getElementById(
+        "mensagemPreparacao"
+    ).style.display = "block";
 
-    abrirMateria(
-        materiaAtual
-    );
+
+    document.getElementById(
+        "botaoPreparar"
+    ).textContent =
+        "✅ Materiais prontos";
 
 }
 
@@ -1217,9 +1845,16 @@ function voltarInicio() {
 
     materiaAtual = null;
 
+    capituloAtual = null;
+
 
     document.getElementById(
         "materia"
+    ).classList.remove("active");
+
+
+    document.getElementById(
+        "capitulo"
     ).classList.remove("active");
 
 
@@ -1229,6 +1864,183 @@ function voltarInicio() {
 
 
     mostrarMaterias();
+
+}
+
+
+function voltarParaMateria() {
+
+    capituloAtual = null;
+
+
+    document.getElementById(
+        "capitulo"
+    ).classList.remove("active");
+
+
+    document.getElementById(
+        "materia"
+    ).classList.add("active");
+
+
+    mostrarCapitulos();
+
+}
+
+
+
+/* =====================================================
+   INFORMAÇÕES
+===================================================== */
+
+function atualizarInformacaoCapitulo() {
+
+    const capitulo =
+        dados.materias[
+            materiaAtual
+        ].capitulos[
+            capituloAtual
+        ];
+
+
+    document.getElementById(
+        "informacaoCapitulo"
+    ).textContent =
+        capitulo.materiais.length +
+        " material(is) cadastrado(s)";
+
+}
+
+
+
+/* =====================================================
+   ÍCONE DO MATERIAL
+===================================================== */
+
+function iconeMaterial(tipo) {
+
+    if (tipo === "pdf") {
+
+        return "📄";
+
+    }
+
+    if (tipo === "video") {
+
+        return "🎥";
+
+    }
+
+    if (tipo === "imagem") {
+
+        return "🖼️";
+
+    }
+
+    return "📎";
+
+}
+
+
+
+/* =====================================================
+   TEXTO DO MATERIAL
+===================================================== */
+
+function textoTipoMaterial(tipo) {
+
+    if (tipo === "pdf") {
+
+        return "Documento PDF";
+
+    }
+
+    if (tipo === "video") {
+
+        return "Vídeo";
+
+    }
+
+    if (tipo === "imagem") {
+
+        return "Imagem";
+
+    }
+
+    return "Arquivo";
+
+}
+
+
+
+/* =====================================================
+   TAMANHO
+===================================================== */
+
+function formatarTamanho(bytes) {
+
+    if (!bytes) {
+
+        return "Tamanho não informado";
+
+    }
+
+
+    if (bytes < 1024) {
+
+        return bytes + " bytes";
+
+    }
+
+
+    if (bytes < 1024 * 1024) {
+
+        return (
+            (bytes / 1024).toFixed(1) +
+            " KB"
+        );
+
+    }
+
+
+    if (bytes < 1024 * 1024 * 1024) {
+
+        return (
+            (bytes /
+                (1024 * 1024)
+            ).toFixed(1) +
+            " MB"
+        );
+
+    }
+
+
+    return (
+        (bytes /
+            (1024 * 1024 * 1024)
+        ).toFixed(1) +
+        " GB"
+    );
+
+}
+
+
+
+/* =====================================================
+   ESCAPAR HTML
+===================================================== */
+
+function escaparHTML(texto) {
+
+    const div =
+        document.createElement("div");
+
+
+    div.textContent =
+        texto;
+
+
+    return div.innerHTML;
 
 }
 
