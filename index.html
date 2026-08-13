@@ -20,11 +20,7 @@
         body {
             margin: 0;
             min-height: 100vh;
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
             color: #24324a;
             padding: 20px;
@@ -32,390 +28,272 @@
 
         .app {
             width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.10);
         }
-
-        /* ================================
-           CABEÇALHO
-        ================================= */
 
         .header {
-            background: white;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow:
-                0 8px 30px
-                rgba(0, 0, 0, 0.08);
-
-            margin-bottom: 25px;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .logo {
-            font-size: 50px;
+            font-size: 55px;
         }
 
         h1 {
-            margin: 0;
-            font-size: 32px;
+            margin: 5px 0;
+            font-size: 34px;
         }
 
         .subtitle {
-            margin: 5px 0 0;
             color: #68758a;
+            font-size: 17px;
         }
 
-        .responsavel {
-            background: #eef3ff;
-            color: #315bd6;
-            padding: 10px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
+        .screen {
+            display: none;
         }
 
-        /* ================================
-           TÍTULO
-        ================================= */
+        .screen.active {
+            display: block;
+        }
 
-        .section-header {
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 15px;
-
-            margin-bottom: 18px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
         }
 
-        .section-title {
-            font-size: 25px;
+        .page-title {
+            font-size: 26px;
             font-weight: bold;
         }
-
-        .section-description {
-            color: #68758a;
-            margin-top: 5px;
-        }
-
-        /* ================================
-           BOTÕES
-        ================================= */
 
         button {
             border: none;
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: bold;
-        }
-
-        .primary-button {
-            background: #4f7cff;
-            color: white;
-
-            padding: 14px 20px;
-
             border-radius: 14px;
-
+            padding: 13px 18px;
             font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
-        .primary-button:hover {
+        button:hover {
             opacity: 0.9;
         }
 
-        .secondary-button {
-            background: #e8edf6;
-            color: #24324a;
-
-            padding: 12px 16px;
-
-            border-radius: 12px;
+        .primary {
+            background: #4f7cff;
+            color: white;
         }
 
-        /* ================================
-           MATÉRIAS
-        ================================= */
+        .secondary {
+            background: #e8edf6;
+            color: #24324a;
+        }
 
-        .materias {
+        .danger {
+            background: #ffe5e5;
+            color: #b42323;
+        }
+
+        .subjects {
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(260px, 1fr)
-                );
-
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 18px;
         }
 
-        .materia {
-            background: white;
-
+        .subject-card {
+            background: #f8faff;
+            border: 2px solid #e3e9f5;
             border-radius: 20px;
-
             padding: 22px;
-
-            box-shadow:
-                0 5px 20px
-                rgba(0, 0, 0, 0.07);
-
-            transition:
-                transform 0.15s,
-                box-shadow 0.15s;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .materia:hover {
+        .subject-card:hover {
             transform: translateY(-3px);
-
-            box-shadow:
-                0 10px 25px
-                rgba(0, 0, 0, 0.10);
+            border-color: #4f7cff;
         }
 
-        .materia-icon {
+        .subject-icon {
             font-size: 42px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .materia-nome {
-            font-size: 22px;
+        .subject-name {
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 8px;
         }
 
-        .materia-info {
+        .subject-info {
             color: #68758a;
+            margin-top: 8px;
             font-size: 14px;
-            line-height: 1.5;
         }
-
-        .materia-actions {
-            display: flex;
-
-            gap: 8px;
-
-            margin-top: 18px;
-        }
-
-        .abrir-button {
-            flex: 1;
-
-            background: #4f7cff;
-            color: white;
-
-            padding: 12px;
-
-            border-radius: 12px;
-        }
-
-        .editar-button {
-            background: #eef3ff;
-            color: #315bd6;
-
-            padding: 12px;
-
-            border-radius: 12px;
-        }
-
-        .excluir-button {
-            background: #fff0f0;
-            color: #c63d3d;
-
-            padding: 12px;
-
-            border-radius: 12px;
-        }
-
-        /* ================================
-           ESTADO VAZIO
-        ================================= */
 
         .empty {
-            background: white;
-
-            border-radius: 22px;
-
-            padding: 50px 25px;
-
             text-align: center;
-
-            box-shadow:
-                0 5px 20px
-                rgba(0, 0, 0, 0.06);
+            padding: 45px 20px;
+            background: #f8faff;
+            border-radius: 20px;
+            color: #68758a;
         }
 
         .empty-icon {
-            font-size: 65px;
+            font-size: 55px;
+            margin-bottom: 10px;
         }
 
-        .empty-title {
-            font-size: 23px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .empty-text {
-            max-width: 550px;
-            margin: 10px auto 25px;
-
-            color: #68758a;
-
-            line-height: 1.6;
-        }
-
-        /* ================================
-           MODAL
-        ================================= */
-
-        .modal-background {
-            display: none;
-
-            position: fixed;
-
-            inset: 0;
-
-            background:
-                rgba(25, 35, 55, 0.55);
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 20px;
-
-            z-index: 1000;
-        }
-
-        .modal-background.active {
+        .chapter-list {
             display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chapter-card {
+            background: #f8faff;
+            border-radius: 18px;
+            padding: 20px;
+            border: 2px solid #e3e9f5;
+        }
+
+        .chapter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .chapter-name {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .chapter-info {
+            color: #68758a;
+            font-size: 14px;
+            margin-top: 6px;
         }
 
         .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
             width: 100%;
             max-width: 500px;
-
             background: white;
-
             border-radius: 22px;
-
-            padding: 28px;
-
-            box-shadow:
-                0 20px 60px
-                rgba(0, 0, 0, 0.20);
+            padding: 25px;
         }
 
         .modal-title {
-            font-size: 24px;
+            font-size: 23px;
             font-weight: bold;
-
-            margin-bottom: 8px;
-        }
-
-        .modal-description {
-            color: #68758a;
-            line-height: 1.5;
-
             margin-bottom: 20px;
         }
 
         .input {
             width: 100%;
-
-            border:
-                2px solid #dbe2ef;
-
+            padding: 15px;
+            border: 2px solid #dce3f0;
             border-radius: 12px;
-
-            padding: 14px;
-
-            font-size: 17px;
-
-            outline: none;
+            font-size: 16px;
+            margin-bottom: 18px;
         }
 
         .input:focus {
+            outline: none;
             border-color: #4f7cff;
         }
 
-        .modal-actions {
+        .modal-buttons {
             display: flex;
-
             gap: 10px;
-
-            margin-top: 20px;
         }
 
-        .modal-actions button {
+        .modal-buttons button {
             flex: 1;
         }
 
-        /* ================================
-           AVISO
-        ================================= */
-
-        .notice {
-            margin-top: 25px;
-
-            background: #eef7ff;
-
-            color: #315675;
-
-            padding: 18px;
-
-            border-radius: 15px;
-
-            line-height: 1.6;
-
-            font-size: 14px;
+        .material-box {
+            margin-top: 18px;
+            background: white;
+            border-radius: 14px;
+            padding: 15px;
+            border: 1px solid #e3e9f5;
         }
 
-        /* ================================
-           RESPONSIVO
-        ================================= */
+        .material-name {
+            font-weight: bold;
+            word-break: break-word;
+        }
 
-        @media (max-width: 650px) {
+        .material-type {
+            color: #68758a;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .material-actions {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .info {
+            margin-top: 25px;
+            padding: 17px;
+            background: #eef7ff;
+            color: #315675;
+            border-radius: 15px;
+            line-height: 1.6;
+        }
+
+        @media(max-width:600px) {
 
             body {
                 padding: 10px;
             }
 
-            .header {
-                padding: 20px;
-            }
-
-            .header-top {
-                flex-direction: column;
-                align-items: flex-start;
+            .app {
+                padding: 20px 15px;
             }
 
             h1 {
-                font-size: 27px;
+                font-size: 28px;
             }
 
-            .section-header {
-                flex-direction: column;
+            .top-bar {
                 align-items: stretch;
+                flex-direction: column;
             }
 
-            .section-header .primary-button {
+            .top-bar button {
                 width: 100%;
-            }
-
-            .materias {
-                grid-template-columns: 1fr;
             }
 
         }
@@ -431,207 +309,169 @@
 <div class="app">
 
 
-    <!-- =========================================
-         CABEÇALHO
-    ========================================== -->
+    <!-- CABEÇALHO -->
 
     <header class="header">
 
-        <div class="header-top">
+        <div class="logo">
+            📚
+        </div>
 
-            <div class="logo-area">
+        <h1>
+            EstudaIA Kids
+        </h1>
 
-                <div class="logo">
-                    📚
-                </div>
-
-                <div>
-
-                    <h1>
-                        EstudaIA Kids
-                    </h1>
-
-                    <p class="subtitle">
-                        Painel de estudos
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="responsavel">
-
-                🔐 Área do responsável
-
-            </div>
-
+        <div class="subtitle">
+            Organizando o estudo de forma inteligente
         </div>
 
     </header>
 
 
 
-    <!-- =========================================
-         ÁREA DE MATÉRIAS
-    ========================================== -->
+    <!-- ================================================= -->
+    <!-- TELA PRINCIPAL -->
+    <!-- ================================================= -->
 
-    <section>
+    <section
+        id="home"
+        class="screen active">
 
-        <div class="section-header">
+        <div class="top-bar">
 
-            <div>
-
-                <div class="section-title">
-                    📚 Matérias
-                </div>
-
-                <div class="section-description">
-
-                    Organize os materiais de estudo
-                    ao longo do ano.
-
-                </div>
-
+            <div class="page-title">
+                📚 Minhas matérias
             </div>
 
-
             <button
-                class="primary-button"
-                onclick="abrirModalNovaMateria()">
+                class="primary"
+                onclick="abrirModalMateria()">
 
-                ＋ Adicionar matéria
+                ➕ Nova matéria
 
             </button>
 
         </div>
 
-
-        <!-- LISTA DE MATÉRIAS -->
 
         <div
             id="listaMaterias"
-            class="materias">
+            class="subjects">
         </div>
 
 
-        <!-- ESTADO VAZIO -->
+        <div class="info">
 
-        <div
-            id="estadoVazio"
-            class="empty">
+            💡 <strong>Como vamos organizar:</strong>
 
-            <div class="empty-icon">
-                📚
-            </div>
+            cada matéria poderá ter seus próprios capítulos
+            e materiais.
 
-            <div class="empty-title">
+            <br><br>
 
-                Nenhuma matéria cadastrada
-
-            </div>
-
-            <div class="empty-text">
-
-                Comece adicionando uma matéria,
-                como Português, Matemática,
-                Ciências ou História.
-
-                <br><br>
-
-                Depois poderemos colocar dentro
-                de cada matéria os capítulos,
-                PDFs, vídeos e questionários.
-
-            </div>
-
-            <button
-                class="primary-button"
-                onclick="abrirModalNovaMateria()">
-
-                ＋ Criar primeira matéria
-
-            </button>
+            Assim você poderá adicionar os conteúdos
+            durante o ano e excluir os materiais antigos
+            quando não forem mais necessários.
 
         </div>
-
 
     </section>
 
 
 
-    <!-- =========================================
-         AVISO
-    ========================================== -->
+    <!-- ================================================= -->
+    <!-- TELA DA MATÉRIA -->
+    <!-- ================================================= -->
 
-    <div class="notice">
+    <section
+        id="materia"
+        class="screen">
 
-        💡 <strong>Como funcionará:</strong>
+        <div class="top-bar">
 
-        cada matéria terá seu próprio espaço.
+            <div>
 
-        <br><br>
+                <div
+                    id="tituloMateria"
+                    class="page-title">
+                </div>
 
-        Dentro dela poderemos colocar os capítulos
-        do livro, PDFs, vídeos e posteriormente
-        criar os questionários usando o sistema
-        de questões adaptativas.
+                <div
+                    id="informacaoMateria"
+                    class="chapter-info">
+                </div>
 
-        <br><br>
+            </div>
 
-        🗑️ Materiais antigos poderão ser excluídos
-        para evitar armazenamento desnecessário.
+            <button
+                class="primary"
+                onclick="abrirModalCapitulo()">
 
-    </div>
+                ➕ Novo capítulo
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="listaCapitulos"
+            class="chapter-list">
+        </div>
+
+
+        <br>
+
+
+        <button
+            class="secondary"
+            onclick="voltarInicio()">
+
+            ← Voltar para matérias
+
+        </button>
+
+    </section>
+
 
 
 </div>
 
 
 
-<!-- =============================================
-     MODAL NOVA MATÉRIA
-============================================== -->
+<!-- ================================================= -->
+<!-- MODAL NOVA MATÉRIA -->
+<!-- ================================================= -->
 
 <div
     id="modalMateria"
-    class="modal-background">
+    class="modal">
 
-    <div class="modal">
+    <div class="modal-content">
 
         <div class="modal-title">
-
             📚 Nova matéria
-
-        </div>
-
-        <div class="modal-description">
-
-            Digite o nome da matéria que deseja
-            adicionar.
-
         </div>
 
         <input
-            id="nomeMateria"
+            id="nomeNovaMateria"
             class="input"
             type="text"
-            placeholder="Ex.: Matemática"
-            maxlength="60">
+            placeholder="Ex.: Matemática">
 
 
-        <div class="modal-actions">
+        <div class="modal-buttons">
 
             <button
-                class="secondary-button"
-                onclick="fecharModal()">
+                class="secondary"
+                onclick="fecharModalMateria()">
 
                 Cancelar
 
             </button>
 
             <button
-                class="primary-button"
+                class="primary"
                 onclick="criarMateria()">
 
                 Criar matéria
@@ -646,44 +486,91 @@
 
 
 
-<!-- =============================================
-     JAVASCRIPT
-============================================== -->
+<!-- ================================================= -->
+<!-- MODAL NOVO CAPÍTULO -->
+<!-- ================================================= -->
+
+<div
+    id="modalCapitulo"
+    class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-title">
+            📖 Novo capítulo
+        </div>
+
+        <input
+            id="nomeNovoCapitulo"
+            class="input"
+            type="text"
+            placeholder="Ex.: Capítulo 1 - Números">
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="secondary"
+                onclick="fecharModalCapitulo()">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="primary"
+                onclick="criarCapitulo()">
+
+                Criar capítulo
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 
 <script>
 
 
-/* ================================================
+/* =====================================================
    BANCO LOCAL
-================================================ */
+===================================================== */
 
-let materias =
-    JSON.parse(
-        localStorage.getItem(
-            "estudaia_materias"
-        )
-    ) || [];
+let dados = JSON.parse(
+    localStorage.getItem("estudaIA_dados")
+) || {
+
+    materias: []
+
+};
+
+
+let materiaAtual = null;
 
 
 
-/* ================================================
+/* =====================================================
    SALVAR
-================================================ */
+===================================================== */
 
-function salvarMaterias() {
+function salvarDados() {
 
     localStorage.setItem(
-        "estudaia_materias",
-        JSON.stringify(materias)
+        "estudaIA_dados",
+        JSON.stringify(dados)
     );
 
 }
 
 
 
-/* ================================================
+/* =====================================================
    MOSTRAR MATÉRIAS
-================================================ */
+===================================================== */
 
 function mostrarMaterias() {
 
@@ -692,88 +579,69 @@ function mostrarMaterias() {
             "listaMaterias"
         );
 
-    const vazio =
-        document.getElementById(
-            "estadoVazio"
-        );
-
-
     lista.innerHTML = "";
 
 
-    if (materias.length === 0) {
+    if (dados.materias.length === 0) {
 
-        vazio.style.display = "block";
+        lista.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📚
+                </div>
+
+                <h2>
+                    Nenhuma matéria cadastrada
+                </h2>
+
+                <p>
+                    Comece criando a primeira matéria
+                    para organizar os estudos.
+                </p>
+
+            </div>
+
+        `;
 
         return;
 
     }
 
 
-    vazio.style.display = "none";
-
-
-    materias.forEach(
-        function(materia, index) {
+    dados.materias.forEach(
+        function(materia, indice) {
 
             const card =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
-            card.className = "materia";
+            card.className =
+                "subject-card";
+
+
+            card.onclick =
+                function() {
+
+                    abrirMateria(indice);
+
+                };
 
 
             card.innerHTML = `
 
-                <div class="materia-icon">
+                <div class="subject-icon">
                     ${materia.icone || "📚"}
                 </div>
 
-                <div class="materia-nome">
-                    ${escaparHTML(materia.nome)}
+                <div class="subject-name">
+                    ${materia.nome}
                 </div>
 
-                <div class="materia-info">
+                <div class="subject-info">
 
-                    📄 ${materia.materiais || 0}
-                    materiais
-
-                    <br>
-
-                    📝 ${materia.questionarios || 0}
-                    questionários
-
-                </div>
-
-
-                <div class="materia-actions">
-
-                    <button
-                        class="abrir-button"
-                        onclick="abrirMateria(${index})">
-
-                        Abrir
-
-                    </button>
-
-
-                    <button
-                        class="editar-button"
-                        onclick="editarMateria(${index})">
-
-                        ✏️
-
-                    </button>
-
-
-                    <button
-                        class="excluir-button"
-                        onclick="excluirMateria(${index})">
-
-                        🗑️
-
-                    </button>
+                    ${materia.capitulos.length}
+                    capítulo(s)
 
                 </div>
 
@@ -789,74 +657,15 @@ function mostrarMaterias() {
 
 
 
-/* ================================================
-   ESCAPAR HTML
-================================================ */
-
-function escaparHTML(texto) {
-
-    const div =
-        document.createElement("div");
-
-    div.textContent = texto;
-
-    return div.innerHTML;
-
-}
-
-
-
-/* ================================================
-   MODAL
-================================================ */
-
-function abrirModalNovaMateria() {
-
-    document
-        .getElementById("modalMateria")
-        .classList.add("active");
-
-
-    const input =
-        document.getElementById(
-            "nomeMateria"
-        );
-
-
-    input.value = "";
-
-    setTimeout(
-        function() {
-
-            input.focus();
-
-        },
-        100
-    );
-
-}
-
-
-
-function fecharModal() {
-
-    document
-        .getElementById("modalMateria")
-        .classList.remove("active");
-
-}
-
-
-
-/* ================================================
+/* =====================================================
    CRIAR MATÉRIA
-================================================ */
+===================================================== */
 
 function criarMateria() {
 
     const input =
         document.getElementById(
-            "nomeMateria"
+            "nomeNovaMateria"
         );
 
 
@@ -870,72 +679,37 @@ function criarMateria() {
             "Digite o nome da matéria."
         );
 
-        input.focus();
-
         return;
 
     }
 
 
-    const existe =
-        materias.some(
-            function(materia) {
+    dados.materias.push({
 
-                return materia.nome
-                    .toLowerCase() ===
-                    nome.toLowerCase();
+        nome: nome,
 
-            }
-        );
+        icone: escolherIcone(nome),
 
-
-    if (existe) {
-
-        alert(
-            "Essa matéria já existe."
-        );
-
-        return;
-
-    }
-
-
-    materias.push({
-
-        id:
-            Date.now(),
-
-        nome:
-            nome,
-
-        icone:
-            escolherIcone(nome),
-
-        materiais:
-            0,
-
-        questionarios:
-            0,
-
-        criadoEm:
-            new Date().toISOString()
+        capitulos: []
 
     });
 
 
-    salvarMaterias();
+    salvarDados();
+
+    input.value = "";
+
+    fecharModalMateria();
 
     mostrarMaterias();
-
-    fecharModal();
 
 }
 
 
 
-/* ================================================
-   ÍCONE DA MATÉRIA
-================================================ */
+/* =====================================================
+   ÍCONE
+===================================================== */
 
 function escolherIcone(nome) {
 
@@ -943,56 +717,34 @@ function escolherIcone(nome) {
         nome.toLowerCase();
 
 
-    if (
-        texto.includes("matem")
-    ) {
+    if (texto.includes("matem")) {
         return "🔢";
     }
 
-
     if (
-        texto.includes("portugu")
+        texto.includes("portug") ||
+        texto.includes("língua") ||
+        texto.includes("lingua")
     ) {
         return "📖";
     }
 
-
-    if (
-        texto.includes("ciên") ||
-        texto.includes("cien")
-    ) {
+    if (texto.includes("ciênc") ||
+        texto.includes("cienc")) {
         return "🔬";
     }
 
-
-    if (
-        texto.includes("hist")
-    ) {
+    if (texto.includes("hist")) {
         return "🏛️";
     }
 
-
-    if (
-        texto.includes("geogr")
-    ) {
+    if (texto.includes("geograf")) {
         return "🌎";
     }
 
-
-    if (
-        texto.includes("ingl") ||
-        texto.includes("english")
-    ) {
+    if (texto.includes("ingl")) {
         return "🇬🇧";
     }
-
-
-    if (
-        texto.includes("arte")
-    ) {
-        return "🎨";
-    }
-
 
     return "📚";
 
@@ -1000,38 +752,194 @@ function escolherIcone(nome) {
 
 
 
-/* ================================================
-   EDITAR
-================================================ */
+/* =====================================================
+   ABRIR MATÉRIA
+===================================================== */
 
-function editarMateria(index) {
+function abrirMateria(indice) {
+
+    materiaAtual =
+        indice;
+
 
     const materia =
-        materias[index];
+        dados.materias[indice];
 
 
-    const novoNome =
-        prompt(
-            "Digite o novo nome da matéria:",
-            materia.nome
+    document.getElementById(
+        "tituloMateria"
+    ).textContent =
+        materia.icone + " " + materia.nome;
+
+
+    document.getElementById(
+        "informacaoMateria"
+    ).textContent =
+        materia.capitulos.length +
+        " capítulo(s) cadastrado(s)";
+
+
+    mostrarCapitulos();
+
+
+    document.getElementById(
+        "home"
+    ).classList.remove("active");
+
+
+    document.getElementById(
+        "materia"
+    ).classList.add("active");
+
+}
+
+
+
+/* =====================================================
+   MOSTRAR CAPÍTULOS
+===================================================== */
+
+function mostrarCapitulos() {
+
+    const lista =
+        document.getElementById(
+            "listaCapitulos"
         );
 
 
-    if (
-        novoNome === null
-    ) {
+    lista.innerHTML = "";
+
+
+    const materia =
+        dados.materias[materiaAtual];
+
+
+    if (materia.capitulos.length === 0) {
+
+        lista.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📖
+                </div>
+
+                <h2>
+                    Nenhum capítulo
+                </h2>
+
+                <p>
+                    Adicione o primeiro capítulo
+                    desta matéria.
+                </p>
+
+            </div>
+
+        `;
+
         return;
+
     }
 
 
+    materia.capitulos.forEach(
+        function(capitulo, indice) {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "chapter-card";
+
+
+            card.innerHTML = `
+
+                <div class="chapter-header">
+
+                    <div>
+
+                        <div class="chapter-name">
+
+                            📖
+                            ${capitulo.nome}
+
+                        </div>
+
+                        <div class="chapter-info">
+
+                            ${capitulo.materiais.length}
+                            material(is)
+
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <button
+                            class="primary"
+                            onclick="abrirCapitulo(${indice})">
+
+                            Abrir
+
+                        </button>
+
+                        <button
+                            class="danger"
+                            onclick="excluirCapitulo(${indice})">
+
+                            🗑️
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="materiais-${indice}">
+
+                </div>
+
+            `;
+
+
+            lista.appendChild(card);
+
+
+            mostrarMateriais(
+                capitulo,
+                indice
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   CRIAR CAPÍTULO
+===================================================== */
+
+function criarCapitulo() {
+
+    const input =
+        document.getElementById(
+            "nomeNovoCapitulo"
+        );
+
+
     const nome =
-        novoNome.trim();
+        input.value.trim();
 
 
     if (!nome) {
 
         alert(
-            "O nome não pode ficar vazio."
+            "Digite o nome do capítulo."
         );
 
         return;
@@ -1039,60 +947,286 @@ function editarMateria(index) {
     }
 
 
-    materia.nome =
-        nome;
+    dados.materias[
+        materiaAtual
+    ].capitulos.push({
+
+        nome: nome,
+
+        materiais: []
+
+    });
 
 
-    materia.icone =
-        escolherIcone(nome);
+    salvarDados();
 
+    input.value = "";
 
-    salvarMaterias();
+    fecharModalCapitulo();
 
-    mostrarMaterias();
+    abrirMateria(
+        materiaAtual
+    );
 
 }
 
 
 
-/* ================================================
-   EXCLUIR
-================================================ */
+/* =====================================================
+   ABRIR CAPÍTULO
+===================================================== */
 
-function excluirMateria(index) {
+function abrirCapitulo(indice) {
 
     const materia =
-        materias[index];
+        dados.materias[materiaAtual];
+
+
+    const capitulo =
+        materia.capitulos[indice];
+
+
+    let mensagem =
+        "📖 " +
+        capitulo.nome +
+        "\n\n";
+
+
+    mensagem +=
+        "Aqui ficará a próxima etapa do sistema:\n\n";
+
+
+    mensagem +=
+        "📄 Enviar PDF\n";
+
+
+    mensagem +=
+        "🎥 Enviar vídeo\n";
+
+
+    mensagem +=
+        "🖼️ Enviar imagens\n";
+
+
+    mensagem +=
+        "🤖 Criar questões com IA\n\n";
+
+
+    mensagem +=
+        "Vamos construir essa tela na próxima etapa.";
+
+
+    alert(mensagem);
+
+}
+
+
+
+/* =====================================================
+   MATERIAIS
+===================================================== */
+
+function mostrarMateriais(
+    capitulo,
+    indice
+) {
+
+    const area =
+        document.getElementById(
+            "materiais-" + indice
+        );
+
+
+    if (!area) return;
+
+
+    if (capitulo.materiais.length === 0) {
+
+        area.innerHTML = `
+
+            <div
+                style="
+                    margin-top:15px;
+                    color:#68758a;
+                    font-size:14px;
+                ">
+
+                Nenhum material enviado ainda.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    capitulo.materiais.forEach(
+        function(material, materialIndice) {
+
+            const div =
+                document.createElement("div");
+
+
+            div.className =
+                "material-box";
+
+
+            div.innerHTML = `
+
+                <div class="material-name">
+
+                    ${material.nome}
+
+                </div>
+
+                <div class="material-type">
+
+                    ${material.tipo}
+
+                </div>
+
+                <div class="material-actions">
+
+                    <button
+                        class="danger"
+                        onclick="
+                            excluirMaterial(
+                                ${indice},
+                                ${materialIndice}
+                            )
+                        ">
+
+                        🗑️ Excluir
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            area.appendChild(div);
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   EXCLUIR CAPÍTULO
+===================================================== */
+
+function excluirCapitulo(indice) {
+
+    const materia =
+        dados.materias[materiaAtual];
+
+
+    const capitulo =
+        materia.capitulos[indice];
 
 
     const confirmar =
         confirm(
-
-            "⚠️ Excluir a matéria \"" +
-            materia.nome +
-            "\"?\n\n" +
-
-            "Nesta versão serão removidos " +
-            "os dados cadastrados dessa matéria " +
-            "neste navegador.\n\n" +
-
-            "Deseja continuar?"
-
+            "Deseja realmente excluir o capítulo \"" +
+            capitulo.nome +
+            "\" e seus materiais?"
         );
 
 
-    if (!confirmar) {
-        return;
-    }
+    if (!confirmar) return;
 
 
-    materias.splice(
-        index,
+    materia.capitulos.splice(
+        indice,
         1
     );
 
 
-    salvarMaterias();
+    salvarDados();
+
+    abrirMateria(
+        materiaAtual
+    );
+
+}
+
+
+
+/* =====================================================
+   EXCLUIR MATERIAL
+===================================================== */
+
+function excluirMaterial(
+    indiceCapitulo,
+    indiceMaterial
+) {
+
+    const materia =
+        dados.materias[materiaAtual];
+
+
+    const capitulo =
+        materia.capitulos[
+            indiceCapitulo
+        ];
+
+
+    const material =
+        capitulo.materiais[
+            indiceMaterial
+        ];
+
+
+    const confirmar =
+        confirm(
+            "Excluir o material \"" +
+            material.nome +
+            "\"?"
+        );
+
+
+    if (!confirmar) return;
+
+
+    capitulo.materiais.splice(
+        indiceMaterial,
+        1
+    );
+
+
+    salvarDados();
+
+    abrirMateria(
+        materiaAtual
+    );
+
+}
+
+
+
+/* =====================================================
+   VOLTAR
+===================================================== */
+
+function voltarInicio() {
+
+    materiaAtual = null;
+
+
+    document.getElementById(
+        "materia"
+    ).classList.remove("active");
+
+
+    document.getElementById(
+        "home"
+    ).classList.add("active");
+
 
     mostrarMaterias();
 
@@ -1100,104 +1234,79 @@ function excluirMateria(index) {
 
 
 
-/* ================================================
-   ABRIR MATÉRIA
-================================================ */
+/* =====================================================
+   MODAL MATÉRIA
+===================================================== */
 
-function abrirMateria(index) {
+function abrirModalMateria() {
 
-    const materia =
-        materias[index];
-
-
-    /*
-       POR ENQUANTO:
-
-       ainda não criamos a página
-       interna da matéria.
-
-       Na próxima etapa vamos criar
-       essa página.
-    */
+    document.getElementById(
+        "modalMateria"
+    ).classList.add("active");
 
 
-    alert(
+    setTimeout(
+        function() {
 
-        "📚 " +
-        materia.nome +
-        "\n\n" +
+            document.getElementById(
+                "nomeNovaMateria"
+            ).focus();
 
-        "A área interna desta matéria " +
-        "será criada na próxima etapa.\n\n" +
-
-        "Nela você poderá adicionar:\n" +
-
-        "📄 PDFs\n" +
-
-        "🎥 Vídeos\n" +
-
-        "📖 Capítulos\n" +
-
-        "🤖 Questionários\n" +
-
-        "🗑️ Materiais antigos"
-
+        },
+        100
     );
 
 }
 
 
+function fecharModalMateria() {
 
-/* ================================================
-   FECHAR MODAL CLICANDO FORA
-================================================ */
+    document.getElementById(
+        "modalMateria"
+    ).classList.remove("active");
 
-document
-    .getElementById("modalMateria")
-    .addEventListener(
-        "click",
-        function(event) {
+}
 
-            if (
-                event.target ===
-                this
-            ) {
 
-                fecharModal();
 
-            }
+/* =====================================================
+   MODAL CAPÍTULO
+===================================================== */
 
-        }
+function abrirModalCapitulo() {
+
+    document.getElementById(
+        "modalCapitulo"
+    ).classList.add("active");
+
+
+    setTimeout(
+        function() {
+
+            document.getElementById(
+                "nomeNovoCapitulo"
+            ).focus();
+
+        },
+        100
     );
 
+}
 
 
-/* ================================================
-   ENTER PARA CRIAR
-================================================ */
+function fecharModalCapitulo() {
 
-document
-    .getElementById("nomeMateria")
-    .addEventListener(
-        "keydown",
-        function(event) {
+    document.getElementById(
+        "modalCapitulo"
+    ).classList.remove("active");
 
-            if (
-                event.key === "Enter"
-            ) {
-
-                criarMateria();
-
-            }
-
-        }
-    );
+}
 
 
 
-/* ================================================
-   INICIAR
-================================================ */
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
 
 mostrarMaterias();
 
