@@ -16,22 +16,23 @@
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #f4f7fb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #24324a;
             padding: 20px;
         }
 
         .app {
             width: 100%;
-            max-width: 750px;
+            max-width: 800px;
+            margin: 0 auto;
             background: white;
             border-radius: 24px;
-            padding: 35px 30px;
+            padding: 30px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
         }
+
+        /* CABEÇALHO */
 
         .header {
             text-align: center;
@@ -44,53 +45,100 @@
 
         h1 {
             margin: 5px 0;
-            color: #24324a;
             font-size: 34px;
         }
 
         .subtitle {
             color: #68758a;
             font-size: 17px;
+            margin-top: 8px;
         }
 
-        .step {
+
+        /* ETAPAS */
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .step-indicator {
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: #e8edf6;
+            color: #68758a;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .step-indicator.active {
+            background: #4f7cff;
+            color: white;
+        }
+
+
+        /* TELAS */
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+
+        /* CAIXAS */
+
+        .card {
             background: #f8faff;
             border-radius: 18px;
             padding: 25px;
             margin-bottom: 20px;
         }
 
-        .step-title {
+        .card-title {
             font-size: 21px;
             font-weight: bold;
-            color: #24324a;
             margin-bottom: 10px;
         }
 
         .description {
             color: #68758a;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
+
+        /* UPLOAD */
+
         .upload-area {
+            display: block;
             border: 2px dashed #9db2e8;
             border-radius: 18px;
-            padding: 30px 20px;
+            padding: 35px 20px;
             text-align: center;
             background: white;
             cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upload-area:hover {
+            background: #f1f5ff;
         }
 
         .upload-icon {
-            font-size: 45px;
+            font-size: 48px;
             margin-bottom: 10px;
         }
 
         .upload-text {
             font-size: 18px;
             font-weight: bold;
-            color: #24324a;
         }
 
         .upload-help {
@@ -105,31 +153,125 @@
 
         .file-name {
             margin-top: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 10px;
             font-weight: bold;
-            color: #24324a;
             word-break: break-word;
         }
 
-        .continue-button {
-            width: 100%;
-            border: none;
-            border-radius: 16px;
-            padding: 18px;
-            font-size: 19px;
+
+        /* OPÇÕES */
+
+        .option-group {
+            margin-top: 20px;
+        }
+
+        .option-title {
+            font-size: 18px;
             font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            border-radius: 12px;
+            padding: 13px;
+            margin-bottom: 8px;
             cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            border-color: #9db2e8;
+        }
+
+        .option input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+
+        /* DESTAQUE AUTOMÁTICO */
+
+        .recommended {
+            border: 2px solid #4f7cff;
+            background: #f1f5ff;
+        }
+
+        .recommended-badge {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
             background: #4f7cff;
             color: white;
         }
 
-        .continue-button:hover {
+
+        /* BOTÕES */
+
+        .button-area {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        button {
+            border: none;
+            border-radius: 15px;
+            padding: 17px 22px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .primary-button {
+            flex: 1;
+            background: #4f7cff;
+            color: white;
+        }
+
+        .secondary-button {
+            background: #e8edf6;
+            color: #24324a;
+        }
+
+        button:hover {
             opacity: 0.9;
         }
 
-        .continue-button:disabled {
+        button:disabled {
             background: #b9c2d3;
             cursor: not-allowed;
         }
+
+
+        /* RESUMO */
+
+        .summary {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .summary strong {
+            color: #24324a;
+        }
+
+
+        /* AVISO */
 
         .info {
             margin-top: 20px;
@@ -138,69 +280,156 @@
             border-radius: 12px;
             color: #6d5a28;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+
+        /* RESPONSIVO */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .app {
+                padding: 20px 15px;
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .button-area {
+                flex-direction: column;
+            }
+
+            .secondary-button {
+                width: 100%;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
 
-    <main class="app">
-
-        <header class="header">
-
-            <div class="logo">📚</div>
-
-            <h1>EstudaIA Kids</h1>
-
-            <p class="subtitle">
-                Vamos preparar seu material de estudo!
-            </p>
-
-        </header>
+<main class="app">
 
 
-        <section class="step">
+    <!-- CABEÇALHO -->
 
-            <div class="step-title">
-                📖 1. Envie o material
+    <header class="header">
+
+        <div class="logo">
+            📚
+        </div>
+
+        <h1>
+            EstudaIA Kids
+        </h1>
+
+        <p class="subtitle">
+            Preparação inteligente para estudar
+        </p>
+
+    </header>
+
+
+    <!-- INDICADOR DE ETAPAS -->
+
+    <div class="steps">
+
+        <div
+            id="indicator1"
+            class="step-indicator active">
+
+            1. Material
+
+        </div>
+
+        <div
+            id="indicator2"
+            class="step-indicator">
+
+            2. Configuração
+
+        </div>
+
+        <div
+            id="indicator3"
+            class="step-indicator">
+
+            3. Revisão
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- TELA 1 - MATERIAL -->
+    <!-- ================================================= -->
+
+    <section
+        id="screen1"
+        class="screen active">
+
+
+        <div class="card">
+
+            <div class="card-title">
+                📖 Enviar material de estudo
             </div>
 
             <div class="description">
 
                 Envie o capítulo ou material que será utilizado
-                para criar as questões.
+                para criar o questionário.
 
                 <br><br>
 
-                Nesta versão poderemos preparar o sistema para
-                trabalhar com PDF, imagens e vídeos.
+                O material poderá ser utilizado para identificar
+                os conteúdos, conceitos, exemplos e habilidades
+                que deverão ser avaliados.
 
             </div>
 
 
-            <label class="upload-area" for="arquivo">
+            <label
+                class="upload-area"
+                for="arquivo">
+
 
                 <div class="upload-icon">
                     📤
                 </div>
 
+
                 <div class="upload-text">
-                    Toque aqui para selecionar o arquivo
+
+                    Toque aqui para selecionar o material
+
                 </div>
 
+
                 <div class="upload-help">
+
                     PDF, imagens ou vídeo
+
                 </div>
+
 
                 <input
                     type="file"
                     id="arquivo"
                     accept=".pdf,image/*,video/*"
-                    onchange="mostrarArquivo()"
-                >
+                    onchange="mostrarArquivo()">
 
             </label>
 
@@ -208,87 +437,960 @@
             <div
                 id="nomeArquivo"
                 class="file-name">
+
             </div>
 
-        </section>
 
-
-        <button
-            id="continuar"
-            class="continue-button"
-            onclick="continuar()"
-            disabled>
-
-            Continuar →
-
-        </button>
+        </div>
 
 
         <div class="info">
 
-            💡 <strong>Importante:</strong>
+            💡 <strong>Regra importante:</strong>
 
-            O material será utilizado para identificar
-            os conteúdos e conhecimentos que deverão ser
-            avaliados.
+            as questões existentes no material não serão
+            simplesmente copiadas.
 
-            As questões do livro servirão apenas como
-            referência.
+            Elas poderão servir como referência de conteúdo,
+            habilidade e nível de dificuldade.
 
-            O sistema deverá criar questões
-            <strong>novas e diferentes das originais</strong>.
+            O objetivo será criar questões
+            <strong>novas e originais</strong>.
 
         </div>
 
-    </main>
+
+        <div class="button-area">
+
+            <button
+                id="continuar1"
+                class="primary-button"
+                onclick="irParaConfiguracao()"
+                disabled>
+
+                Continuar →
+
+            </button>
+
+        </div>
 
 
-    <script>
-
-        let arquivoSelecionado = null;
+    </section>
 
 
-        function mostrarArquivo() {
 
-            const input = document.getElementById("arquivo");
+    <!-- ================================================= -->
+    <!-- TELA 2 - CONFIGURAÇÃO -->
+    <!-- ================================================= -->
 
-            const nome = document.getElementById("nomeArquivo");
+    <section
+        id="screen2"
+        class="screen">
 
-            const botao = document.getElementById("continuar");
+
+        <div class="card">
+
+            <div class="card-title">
+                ⚙️ Configurar questionário
+            </div>
+
+            <div class="description">
+
+                Defina como o questionário deverá ser criado.
+
+                Você poderá escolher uma configuração
+                específica ou deixar que o sistema faça
+                uma escolha inteligente baseada no conteúdo.
+
+            </div>
 
 
-            if (input.files.length > 0) {
 
-                arquivoSelecionado = input.files[0];
+            <!-- QUANTIDADE -->
 
-                nome.textContent =
-                    "📎 " + arquivoSelecionado.name;
+            <div class="option-group">
 
-                botao.disabled = false;
+                <div class="option-title">
+                    🔢 Quantidade de questões
+                </div>
 
-            }
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="quantidade"
+                        value="5">
+
+                    <span>5 questões</span>
+
+                </label>
+
+
+                <label class="option recommended">
+
+                    <input
+                        type="radio"
+                        name="quantidade"
+                        value="10"
+                        checked>
+
+                    <span>
+                        10 questões
+                        <span class="recommended-badge">
+                            RECOMENDADO
+                        </span>
+                    </span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="quantidade"
+                        value="15">
+
+                    <span>15 questões</span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="quantidade"
+                        value="20">
+
+                    <span>20 questões</span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- DIFICULDADE -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    🎯 Nível de dificuldade
+                </div>
+
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="dificuldade"
+                        value="facil">
+
+                    <span>Fácil</span>
+
+                </label>
+
+
+                <label class="option recommended">
+
+                    <input
+                        type="radio"
+                        name="dificuldade"
+                        value="material"
+                        checked>
+
+                    <span>
+                        Adequado ao material
+                        <span class="recommended-badge">
+                            RECOMENDADO
+                        </span>
+                    </span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="dificuldade"
+                        value="dificil">
+
+                    <span>Difícil</span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="dificuldade"
+                        value="progressivo">
+
+                    <span>
+                        Progressivo
+                    </span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- TIPOS -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    🧩 Tipos de questões
+                </div>
+
+
+                <label class="option recommended">
+
+                    <input
+                        type="radio"
+                        name="tipoQuestao"
+                        value="automatico"
+                        checked
+                        onchange="alternarTipos()">
+
+                    <span>
+
+                        Mistura inteligente
+                        <span class="recommended-badge">
+                            RECOMENDADO
+                        </span>
+
+                    </span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="tipoQuestao"
+                        value="personalizado"
+                        onchange="alternarTipos()">
+
+                    <span>
+
+                        Escolher os tipos manualmente
+
+                    </span>
+
+                </label>
+
+
+                <div
+                    id="tiposPersonalizados"
+                    style="display:none; margin-top:15px;">
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="verdadeiro_falso">
+
+                        <span>
+                            ✅ Verdadeiro ou falso
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="multipla_correta">
+
+                        <span>
+                            🔘 Assinale a alternativa correta
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="multipla_incorreta">
+
+                        <span>
+                            ❌ Assinale a alternativa incorreta
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="complete">
+
+                        <span>
+                            ✏️ Complete a frase
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="associacao">
+
+                        <span>
+                            🔗 Relacione as colunas
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="ordenacao">
+
+                        <span>
+                            🔢 Ordene os itens
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="multipla_resposta">
+
+                        <span>
+                            ☑️ Escolha mais de uma alternativa
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="classificacao">
+
+                        <span>
+                            🗂️ Classificação
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="identifique_erro">
+
+                        <span>
+                            🔍 Identifique o erro
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="situacao_problema">
+
+                        <span>
+                            🧠 Situação-problema
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="interpretacao">
+
+                        <span>
+                            📖 Interpretação
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="calculo">
+
+                        <span>
+                            🔢 Cálculo
+                        </span>
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="tipos"
+                            value="raciocinio">
+
+                        <span>
+                            💭 Raciocínio
+                        </span>
+
+                    </label>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="button-area">
+
+            <button
+                class="secondary-button"
+                onclick="voltarParaMaterial()">
+
+                ← Voltar
+
+            </button>
+
+
+            <button
+                class="primary-button"
+                onclick="irParaRevisao()">
+
+                Continuar →
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================================================= -->
+    <!-- TELA 3 - REVISÃO -->
+    <!-- ================================================= -->
+
+    <section
+        id="screen3"
+        class="screen">
+
+
+        <div class="card">
+
+            <div class="card-title">
+                🔎 Revisar configuração
+            </div>
+
+            <div class="description">
+
+                Confira as configurações antes de gerar
+                o questionário.
+
+            </div>
+
+
+            <div class="summary">
+
+                <p>
+                    📚 <strong>Material:</strong>
+                    <span id="resumoArquivo">
+                    </span>
+                </p>
+
+
+                <p>
+                    🔢 <strong>Quantidade:</strong>
+                    <span id="resumoQuantidade">
+                    </span>
+                    questões
+                </p>
+
+
+                <p>
+                    🎯 <strong>Dificuldade:</strong>
+                    <span id="resumoDificuldade">
+                    </span>
+                </p>
+
+
+                <p>
+                    🧩 <strong>Tipos:</strong>
+                    <span id="resumoTipos">
+                    </span>
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="info">
+
+            🤖 <strong>Próxima etapa:</strong>
+
+            o sistema utilizará o material enviado e as
+            configurações acima para aplicar o prompt
+            pedagógico e criar questões originais.
+
+            <br><br>
+
+            As questões do material não deverão ser
+            simplesmente reproduzidas.
+
+        </div>
+
+
+        <div class="button-area">
+
+            <button
+                class="secondary-button"
+                onclick="voltarParaConfiguracao()">
+
+                ← Voltar
+
+            </button>
+
+
+            <button
+                class="primary-button"
+                onclick="prepararGeracao()">
+
+                🤖 Preparar questionário
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+
+</main>
+
+
+
+<script>
+
+
+    /* ================================================
+       VARIÁVEIS
+    ================================================= */
+
+    let arquivoSelecionado = null;
+
+
+
+    /* ================================================
+       SELEÇÃO DO ARQUIVO
+    ================================================= */
+
+    function mostrarArquivo() {
+
+        const input =
+            document.getElementById("arquivo");
+
+        const nome =
+            document.getElementById("nomeArquivo");
+
+        const botao =
+            document.getElementById("continuar1");
+
+
+        if (input.files.length > 0) {
+
+            arquivoSelecionado =
+                input.files[0];
+
+
+            nome.textContent =
+                "📎 " + arquivoSelecionado.name;
+
+
+            botao.disabled = false;
+
+        }
+
+    }
+
+
+
+    /* ================================================
+       TROCAR DE TELA
+    ================================================= */
+
+    function mostrarTela(numero) {
+
+        document
+            .querySelectorAll(".screen")
+            .forEach(function(tela) {
+
+                tela.classList.remove("active");
+
+            });
+
+
+        document
+            .getElementById("screen" + numero)
+            .classList.add("active");
+
+
+        document
+            .querySelectorAll(".step-indicator")
+            .forEach(function(indicador) {
+
+                indicador.classList.remove("active");
+
+            });
+
+
+        document
+            .getElementById("indicator" + numero)
+            .classList.add("active");
+
+    }
+
+
+
+    /* ================================================
+       IR PARA CONFIGURAÇÃO
+    ================================================= */
+
+    function irParaConfiguracao() {
+
+        if (!arquivoSelecionado) {
+
+            alert(
+                "Selecione um material antes de continuar."
+            );
+
+            return;
 
         }
 
 
-        function continuar() {
+        mostrarTela(2);
 
-            if (!arquivoSelecionado) {
+    }
+
+
+
+    /* ================================================
+       VOLTAR PARA MATERIAL
+    ================================================= */
+
+    function voltarParaMaterial() {
+
+        mostrarTela(1);
+
+    }
+
+
+
+    /* ================================================
+       TIPOS DE QUESTÃO
+    ================================================= */
+
+    function alternarTipos() {
+
+        const tipoSelecionado =
+            document.querySelector(
+                'input[name="tipoQuestao"]:checked'
+            );
+
+
+        const area =
+            document.getElementById(
+                "tiposPersonalizados"
+            );
+
+
+        if (
+            tipoSelecionado &&
+            tipoSelecionado.value === "personalizado"
+        ) {
+
+            area.style.display = "block";
+
+        } else {
+
+            area.style.display = "none";
+
+        }
+
+    }
+
+
+
+    /* ================================================
+       IR PARA REVISÃO
+    ================================================= */
+
+    function irParaRevisao() {
+
+
+        /* QUANTIDADE */
+
+        const quantidade =
+            document.querySelector(
+                'input[name="quantidade"]:checked'
+            ).value;
+
+
+        /* DIFICULDADE */
+
+        const dificuldade =
+            document.querySelector(
+                'input[name="dificuldade"]:checked'
+            ).value;
+
+
+        /* TIPO */
+
+        const tipo =
+            document.querySelector(
+                'input[name="tipoQuestao"]:checked'
+            ).value;
+
+
+
+        /* TEXTO DA DIFICULDADE */
+
+        let dificuldadeTexto = "";
+
+
+        if (dificuldade === "facil") {
+
+            dificuldadeTexto = "Fácil";
+
+        }
+
+        else if (dificuldade === "material") {
+
+            dificuldadeTexto =
+                "Adequado ao nível do material";
+
+        }
+
+        else if (dificuldade === "dificil") {
+
+            dificuldadeTexto = "Difícil";
+
+        }
+
+        else if (dificuldade === "progressivo") {
+
+            dificuldadeTexto =
+                "Progressivo";
+
+        }
+
+
+
+        /* TIPOS */
+
+        let tiposTexto = "";
+
+
+        if (tipo === "automatico") {
+
+            tiposTexto =
+                "Mistura inteligente de tipos adequados ao conteúdo";
+
+        }
+
+        else {
+
+            const selecionados =
+                document.querySelectorAll(
+                    'input[name="tipos"]:checked'
+                );
+
+
+            if (selecionados.length === 0) {
+
+                alert(
+                    "Selecione pelo menos um tipo de questão."
+                );
 
                 return;
 
             }
 
 
-            alert(
-                "Material selecionado!\n\n" +
-                arquivoSelecionado.name +
-                "\n\nNa próxima etapa vamos configurar o questionário."
+            const nomes = {
+
+                verdadeiro_falso:
+                    "Verdadeiro ou falso",
+
+                multipla_correta:
+                    "Assinale a correta",
+
+                multipla_incorreta:
+                    "Assinale a incorreta",
+
+                complete:
+                    "Complete a frase",
+
+                associacao:
+                    "Relacione as colunas",
+
+                ordenacao:
+                    "Ordene os itens",
+
+                multipla_resposta:
+                    "Múltiplas respostas",
+
+                classificacao:
+                    "Classificação",
+
+                identifique_erro:
+                    "Identifique o erro",
+
+                situacao_problema:
+                    "Situação-problema",
+
+                interpretacao:
+                    "Interpretação",
+
+                calculo:
+                    "Cálculo",
+
+                raciocinio:
+                    "Raciocínio"
+
+            };
+
+
+            let lista = [];
+
+
+            selecionados.forEach(
+                function(item) {
+
+                    lista.push(
+                        nomes[item.value]
+                    );
+
+                }
             );
+
+
+            tiposTexto =
+                lista.join(", ");
 
         }
 
-    </script>
+
+
+        /* PREENCHER RESUMO */
+
+        document.getElementById(
+            "resumoArquivo"
+        ).textContent =
+            arquivoSelecionado.name;
+
+
+        document.getElementById(
+            "resumoQuantidade"
+        ).textContent =
+            quantidade;
+
+
+        document.getElementById(
+            "resumoDificuldade"
+        ).textContent =
+            dificuldadeTexto;
+
+
+        document.getElementById(
+            "resumoTipos"
+        ).textContent =
+            tiposTexto;
+
+
+
+        mostrarTela(3);
+
+    }
+
+
+
+    /* ================================================
+       VOLTAR PARA CONFIGURAÇÃO
+    ================================================= */
+
+    function voltarParaConfiguracao() {
+
+        mostrarTela(2);
+
+    }
+
+
+
+    /* ================================================
+       PREPARAR GERAÇÃO
+    ================================================= */
+
+    function prepararGeracao() {
+
+        alert(
+
+            "Configuração preparada com sucesso!\n\n" +
+
+            "Na próxima etapa vamos conectar o sistema " +
+            "ao nosso prompt e criar o gerador de questões."
+
+        );
+
+    }
+
+
+</script>
+
 
 </body>
 
