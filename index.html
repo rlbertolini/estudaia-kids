@@ -1744,6 +1744,10 @@ function escaparHTML(
    PREPARAR QUESTÕES
 ========================================== */
 
+/* ==========================================
+   PREPARAR QUESTÕES
+========================================== */
+
 function prepararQuestoes() {
 
     const quantidadeSelecionada =
@@ -1761,10 +1765,50 @@ function prepararQuestoes() {
 
     }
 
-    const quantidade =
-        quantidadeSelecionada.value;
 
-    iniciarExercicios();
+    const quantidade =
+        Number(quantidadeSelecionada.value);
+
+
+    /*
+    ==========================================
+    VERIFICA SE O BANCO DE TESTE EXISTE
+    ==========================================
+    */
+
+    if (
+        typeof bancoTeste === "undefined" ||
+        !Array.isArray(bancoTeste)
+    ) {
+
+        alert(
+            "O banco de questões não foi carregado."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    ==========================================
+    SELECIONA A QUANTIDADE
+    ==========================================
+    */
+
+    const questoes =
+        bancoTeste.slice(0, quantidade);
+
+
+    /*
+    ==========================================
+    INICIA O QUESTIONÁRIO
+    ==========================================
+    */
+
+    iniciarQuestionario(
+        questoes
+    );
 
 }
 /* ==========================================
