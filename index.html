@@ -1103,6 +1103,138 @@ button {
     </div>
 
 </section>
+<!-- ==========================================
+     TELA 4 — EXERCÍCIOS
+========================================== -->
+
+<section
+    id="screenExercicios"
+    class="screen">
+
+    <div class="card">
+
+        <div class="card-title">
+            📝 Exercício
+        </div>
+
+        <div class="description">
+
+            Questão <span id="numeroQuestao">1</span>
+            de <span id="totalQuestoes">20</span>
+
+        </div>
+
+        <div class="card">
+
+            <div
+                id="pergunta"
+                style="
+                    font-size:22px;
+                    font-weight:bold;
+                    line-height:1.5;
+                ">
+
+                Qual é a resposta correta?
+
+            </div>
+
+        </div>
+
+
+        <div id="alternativas">
+
+            <label class="option">
+
+                <input
+                    type="radio"
+                    name="resposta"
+                    value="A">
+
+                <span>
+                    A) Primeira alternativa
+                </span>
+
+            </label>
+
+
+            <label class="option">
+
+                <input
+                    type="radio"
+                    name="resposta"
+                    value="B">
+
+                <span>
+                    B) Segunda alternativa
+                </span>
+
+            </label>
+
+
+            <label class="option">
+
+                <input
+                    type="radio"
+                    name="resposta"
+                    value="C">
+
+                <span>
+                    C) Terceira alternativa
+                </span>
+
+            </label>
+
+
+            <label class="option">
+
+                <input
+                    type="radio"
+                    name="resposta"
+                    value="D">
+
+                <span>
+                    D) Quarta alternativa
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <div class="button-area">
+
+            <button
+                class="secondary-button"
+                onclick="voltarParaPreparar()">
+
+                ← Voltar
+
+            </button>
+
+
+            <button
+                class="primary-button"
+                onclick="responderQuestao()">
+
+                Responder →
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+        💡 <strong>Modo de estudo:</strong>
+
+        escolha uma alternativa e clique em
+        <strong>Responder</strong>.
+
+    </div>
+
+</section>
 </main>
 
 
@@ -1640,20 +1772,73 @@ function prepararQuestoes() {
     const quantidade =
         quantidadeSelecionada.value;
 
-    alert(
-        "Configuração preparada!\n\n" +
-        "Material: " +
-        document.getElementById(
-            "materialSelecionadoNome"
-        ).textContent +
-        "\n\n" +
-        "Quantidade: " +
-        quantidade +
-        " questões."
+    iniciarExercicios();
+
+}
+/* ==========================================
+   INICIAR EXERCÍCIOS
+========================================== */
+
+function iniciarExercicios() {
+
+    document.getElementById(
+        "totalQuestoes"
+    ).textContent =
+        document.querySelector(
+            'input[name="quantidadePreparar"]:checked'
+        ).value;
+
+    document.getElementById(
+        "numeroQuestao"
+    ).textContent = "1";
+
+    mostrarTela(
+        "screenExercicios"
     );
 
 }
 
+
+/* ==========================================
+   RESPONDER QUESTÃO
+========================================== */
+
+function responderQuestao() {
+
+    const resposta =
+        document.querySelector(
+            'input[name="resposta"]:checked'
+        );
+
+    if (!resposta) {
+
+        alert(
+            "Escolha uma alternativa antes de responder."
+        );
+
+        return;
+
+    }
+
+    alert(
+        "Resposta registrada: " +
+        resposta.value
+    );
+
+}
+
+
+/* ==========================================
+   VOLTAR PARA PREPARAÇÃO
+========================================== */
+
+function voltarParaPreparar() {
+
+    mostrarTela(
+        "screenPreparar"
+    );
+
+}
 </script>
 
 
