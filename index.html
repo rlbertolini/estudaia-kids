@@ -1616,7 +1616,43 @@ function escaparHTML(
         );
 
 }
+/* ==========================================
+   PREPARAR QUESTÕES
+========================================== */
 
+function prepararQuestoes() {
+
+    const quantidadeSelecionada =
+        document.querySelector(
+            'input[name="quantidadePreparar"]:checked'
+        );
+
+    if (!quantidadeSelecionada) {
+
+        alert(
+            "Escolha a quantidade de questões."
+        );
+
+        return;
+
+    }
+
+    const quantidade =
+        quantidadeSelecionada.value;
+
+    alert(
+        "Configuração preparada!\n\n" +
+        "Material: " +
+        document.getElementById(
+            "materialSelecionadoNome"
+        ).textContent +
+        "\n\n" +
+        "Quantidade: " +
+        quantidade +
+        " questões."
+    );
+
+}
 
 </script>
 
