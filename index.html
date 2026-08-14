@@ -865,7 +865,244 @@ button {
 
 </section>
 
+<!-- ==========================================
+     TELA 3 — PREPARAR QUESTIONÁRIO
+========================================== -->
 
+<section
+    id="screenPreparar"
+    class="screen">
+
+    <div class="card">
+
+        <div class="card-title">
+            🤖 Preparar questionário
+        </div>
+
+        <div class="description">
+
+            O material abaixo será utilizado para
+            preparar as questões.
+
+        </div>
+
+        <div class="summary">
+
+            <p>
+                📚 <strong>Matéria:</strong>
+                <span id="materialSelecionadoMateria"></span>
+            </p>
+
+            <p>
+                📄 <strong>Material:</strong>
+                <span id="materialSelecionadoNome"></span>
+            </p>
+
+            <p>
+                📅 <strong>Data:</strong>
+                <span id="materialSelecionadoData"></span>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            📝 Quantidade de questões
+        </div>
+
+        <div class="description">
+
+            Escolha quantas questões sua filha
+            responderá nesta sessão.
+
+        </div>
+
+        <label class="option">
+
+            <input
+                type="radio"
+                name="quantidadePreparar"
+                value="20"
+                checked>
+
+            <span>
+                20 questões
+            </span>
+
+        </label>
+
+        <label class="option">
+
+            <input
+                type="radio"
+                name="quantidadePreparar"
+                value="30">
+
+            <span>
+                30 questões
+            </span>
+
+        </label>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            🧠 Dificuldade adaptativa
+        </div>
+
+        <div class="description">
+
+            O sistema começará pelas questões fáceis
+            e acompanhará o desempenho da sua filha.
+
+        </div>
+
+        <div class="level-flow">
+
+            <span class="level easy">
+                🟢 Fácil
+            </span>
+
+            <span class="arrow">
+                →
+            </span>
+
+            <span class="level medium">
+                🟡 Intermediário
+            </span>
+
+            <span class="arrow">
+                →
+            </span>
+
+            <span class="level hard">
+                🔴 Difícil
+            </span>
+
+        </div>
+
+        <div class="info">
+
+            Se ela demonstrar domínio das questões
+            fáceis, o sistema poderá avançar para
+            as intermediárias.
+
+            <br><br>
+
+            Se demonstrar domínio das intermediárias,
+            poderá avançar para as difíceis.
+
+            <br><br>
+
+            Se começar a apresentar dificuldade,
+            o sistema poderá retornar para um nível
+            anterior.
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            🧩 Tipos de questões
+        </div>
+
+        <div class="description">
+
+            O sistema utilizará uma mistura de
+            diferentes tipos de questões, sempre que
+            o conteúdo permitir.
+
+        </div>
+
+        <div class="info">
+
+            ✅ Verdadeiro ou falso
+
+            <br>
+            🔘 Assinale a correta
+
+            <br>
+            ❌ Assinale a incorreta
+
+            <br>
+            ✏️ Complete
+
+            <br>
+            🔗 Associação
+
+            <br>
+            🔢 Ordenação
+
+            <br>
+            ☑️ Múltiplas respostas
+
+            <br>
+            🗂️ Classificação
+
+            <br>
+            🔍 Identifique o erro
+
+            <br>
+            🧠 Situação-problema
+
+            <br>
+            📖 Interpretação
+
+            <br>
+            💭 Raciocínio
+
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+        🔐 <strong>Importante:</strong>
+
+        o material será utilizado como fonte
+        exclusiva para criação das questões.
+
+        <br><br>
+
+        As questões do livro não serão simplesmente
+        copiadas. O sistema deverá criar questões
+        novas, baseadas no conteúdo estudado.
+
+    </div>
+
+
+    <div class="button-area">
+
+        <button
+            class="secondary-button"
+            onclick="voltarParaMateriaSelecionada()">
+
+            ← Voltar
+
+        </button>
+
+        <button
+            class="primary-button"
+            onclick="prepararQuestoes()">
+
+            🤖 Preparar questões →
+
+        </button>
+
+    </div>
+
+</section>
 </main>
 
 
@@ -1305,56 +1542,42 @@ function excluirMaterial(
 }
 
 
-
 /* ==========================================
    SELECIONAR MATERIAL
 ========================================== */
 
-function selecionarMaterial(
-    id
-) {
+function selecionarMaterial(id) {
 
+    const dados = obterMateriais();
 
-    const dados =
-        obterMateriais();
+    const materiais = dados[materiaAtual] || [];
 
-
-    const materiais =
-        dados[materiaAtual] || [];
-
-
-    const material =
-        materiais.find(
-
-            function(item) {
-
-                return item.id === id;
-
-            }
-
-        );
-
-
-    if (!material) {
-
-        return;
-
-    }
-
-
-    alert(
-
-        "Material selecionado:\n\n" +
-
-        material.nome +
-
-        "\n\nA próxima etapa será criar o questionário a partir deste material."
-
+    const material = materiais.find(
+        function(item) {
+            return item.id === id;
+        }
     );
 
+    if (!material) {
+        return;
+    }
+
+    document.getElementById(
+        "materialSelecionadoNome"
+    ).textContent = material.nome;
+
+    document.getElementById(
+        "materialSelecionadoMateria"
+    ).textContent = materiaAtual;
+
+    document.getElementById(
+        "materialSelecionadoData"
+    ).textContent =
+        "Adicionado em " + material.data;
+
+    mostrarTela("screenPreparar");
+
 }
-
-
 
 /* ==========================================
    SEGURANÇA
