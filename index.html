@@ -1820,9 +1820,34 @@ function responderQuestao() {
 
     }
 
-    alert(
-        "Resposta registrada: " +
-        resposta.value
+    numeroQuestaoAtual++;
+
+    if (
+        numeroQuestaoAtual >
+        totalQuestoesAtual
+    ) {
+
+        alert(
+            "🎉 Questionário concluído!"
+        );
+
+        return;
+
+    }
+
+    document.getElementById(
+        "numeroQuestao"
+    ).textContent =
+        numeroQuestaoAtual;
+
+    document.querySelectorAll(
+        'input[name="resposta"]'
+    ).forEach(
+        function(item) {
+
+            item.checked = false;
+
+        }
     );
 
 }
