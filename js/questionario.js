@@ -4,17 +4,16 @@ ESTUDAIA KIDS
 QUESTIONÁRIO INTERATIVO
 ==========================================================
 
-Este arquivo controla a apresentação das questões.
-
-A criança:
-- vê uma questão por vez;
-- toca na resposta;
-- recebe o resultado;
-- avança para a próxima questão.
-
-O sistema também conversa com o motor adaptativo.
+Integração com:
+- banco de questões
+- motor adaptativo
+- 20 ou 30 questões
+- feedback imediato
+- avanço para a próxima questão
+- resultado final
 ==========================================================
 */
+
 
 let sessaoQuestionario = null;
 
@@ -24,7 +23,7 @@ let bancoAtual = [];
 
 let respostasSessao = [];
 
-let numeroQuestao = 0;
+let motorAtivo = false;
 
 
 /*
@@ -33,31 +32,78 @@ INICIAR QUESTIONÁRIO
 ==========================================================
 */
 
-function iniciarQuestionario(questoes) {
+function iniciarQuestionario(questoes, quantidade = 20) {
 
-    bancoAtual = questoes || [];
+    if (!Array.isArray(questoes) || questoes.length === 0) {
+
+        alert("Nenhuma questão disponível.");
+
+        return;
+
+    }
+
+
+    bancoAtual = questoes;
 
     respostasSessao = [];
 
-    numeroQuestao = 0;
 
     /*
-    Cria uma sessão simples
+    ------------------------------------------------------
+    Tenta utilizar o motor adaptativo
+    ------------------------------------------------------
     */
 
-    sessaoQuestionario = {
+    motorAtivo =
+        typeof EstudaIAAdaptativo !== "undefined";
 
-        questoes: bancoAtual,
 
-        indiceAtual: 0,
+    if (motorAtivo) {
 
-        acertos: 0,
+        sessaoQuestionario =
+            EstudaIAAdaptativo.criarSessao(
 
-        erros: 0,
+                bancoAtual,
 
-        finalizado: false
+                {
+                    quantidadeSessao:
+                        quantidade === 30
+                            ? 30
+                            : 20
+                }
 
-    };
+            );
+
+    } else {
+
+        /*
+        --------------------------------------------------
+        Modo simples de segurança
+        --------------------------------------------------
+        */
+
+        sessaoQuestionario = {
+
+            questoes:
+                bancoAtual.slice(
+                    0,
+                    quantidade === 30 ? 30 : 20
+                ),
+
+            quantidadeTotal:
+                quantidade === 30 ? 30 : 20,
+
+            indiceAtual: 0,
+
+            acertos: 0,
+
+            erros: 0,
+
+            finalizado: false
+
+        };
+
+    }
 
 
     mostrarProximaQuestao();
@@ -74,34 +120,80 @@ MOSTRAR PRÓXIMA QUESTÃO
 function mostrarProximaQuestao() {
 
     if (!sessaoQuestionario) {
+
         return;
+
     }
 
 
     /*
-    Verifica se terminou
+    ------------------------------------------------------
+    Remove feedback anterior
+    ------------------------------------------------------
     */
 
-    if (
-        sessaoQuestionario.indiceAtual >=
-        sessaoQuestionario.questoes.length
-    ) {
+    const feedbackAnterior =
+        document.getElementById(
+            "feedback-questao"
+        );
+
+
+    if (feedbackAnterior) {
+
+        feedbackAnterior.remove();
+
+    }
+
+
+    /*
+    ------------------------------------------------------
+    Obtém próxima questão
+    ------------------------------------------------------
+    */
+
+    if (motorAtivo) {
+
+        questaoAtual =
+            EstudaIAAdaptativo
+                .escolherProximaQuestao(
+                    sessaoQuestionario
+                );
+
+    } else {
+
+        if (
+            sessaoQuestionario.indiceAtual >=
+            sessaoQuestionario.questoes.length
+        ) {
+
+            finalizarQuestionario();
+
+            return;
+
+        }
+
+
+        questaoAtual =
+            sessaoQuestionario.questoes[
+                sessaoQuestionario.indiceAtual
+            ];
+
+    }
+
+
+    /*
+    ------------------------------------------------------
+    Verifica finalização
+    ------------------------------------------------------
+    */
+
+    if (!questaoAtual) {
 
         finalizarQuestionario();
 
         return;
 
     }
-
-
-    questaoAtual =
-        sessaoQuestionario.questoes[
-            sessaoQuestionario.indiceAtual
-        ];
-
-
-    numeroQuestao =
-        sessaoQuestionario.indiceAtual + 1;
 
 
     desenharQuestao(
@@ -113,7 +205,7 @@ function mostrarProximaQuestao() {
 
 /*
 ==========================================================
-DESENHAR QUESTÃO NA TELA
+DESENHAR QUESTÃO
 ==========================================================
 */
 
@@ -137,7 +229,31 @@ function desenharQuestao(questao) {
 
 
     /*
-    Nome amigável da dificuldade
+    ------------------------------------------------------
+    Número da questão
+    ------------------------------------------------------
+    */
+
+    let numeroQuestao = 1;
+
+
+    if (motorAtivo) {
+
+        numeroQuestao =
+            sessaoQuestionario.numeroQuestaoAtual;
+
+    } else {
+
+        numeroQuestao =
+            sessaoQuestionario.indiceAtual + 1;
+
+    }
+
+
+    /*
+    ------------------------------------------------------
+    Dificuldade
+    ------------------------------------------------------
     */
 
     let nomeDificuldade =
@@ -167,7 +283,9 @@ function desenharQuestao(questao) {
 
 
     /*
-    Monta alternativas
+    ------------------------------------------------------
+    Alternativas
+    ------------------------------------------------------
     */
 
     let alternativasHTML = "";
@@ -180,10 +298,11 @@ function desenharQuestao(questao) {
     ) {
 
         questao.alternativas.forEach(
-            (
+
+            function(
                 alternativa,
                 indice
-            ) => {
+            ) {
 
                 alternativasHTML += `
 
@@ -202,7 +321,9 @@ function desenharQuestao(questao) {
 
                         <span>
 
-                            ${alternativa}
+                            ${escaparHTML(
+                                String(alternativa)
+                            )}
 
                         </span>
 
@@ -211,13 +332,16 @@ function desenharQuestao(questao) {
                 `;
 
             }
+
         );
 
     }
 
 
     /*
-    Monta a questão
+    ------------------------------------------------------
+    Monta a tela
+    ------------------------------------------------------
     */
 
     area.innerHTML = `
@@ -229,7 +353,10 @@ function desenharQuestao(questao) {
                 Questão
                 ${numeroQuestao}
                 de
-                ${sessaoQuestionario.questoes.length}
+                ${
+                    sessaoQuestionario.quantidadeTotal ||
+                    sessaoQuestionario.questoes.length
+                }
 
             </div>
 
@@ -247,7 +374,9 @@ function desenharQuestao(questao) {
 
             <h2>
 
-                ${questao.enunciado}
+                ${escaparHTML(
+                    String(questao.enunciado)
+                )}
 
             </h2>
 
@@ -274,12 +403,16 @@ SELECIONAR RESPOSTA
 function selecionarResposta(indice) {
 
     if (!questaoAtual) {
+
         return;
+
     }
 
 
     /*
-    Impede múltiplos cliques
+    ------------------------------------------------------
+    Impede clicar novamente
+    ------------------------------------------------------
     */
 
     const botoes =
@@ -289,13 +422,21 @@ function selecionarResposta(indice) {
 
 
     botoes.forEach(
-        botao => {
+
+        function(botao) {
 
             botao.disabled = true;
 
         }
+
     );
 
+
+    /*
+    ------------------------------------------------------
+    Verifica resposta
+    ------------------------------------------------------
+    */
 
     const correta =
         indice ===
@@ -303,7 +444,9 @@ function selecionarResposta(indice) {
 
 
     /*
-    Registra resposta
+    ------------------------------------------------------
+    Guarda resposta
+    ------------------------------------------------------
     */
 
     respostasSessao.push({
@@ -324,29 +467,68 @@ function selecionarResposta(indice) {
             questaoAtual.conteudo,
 
         capitulo:
-            questaoAtual.capitulo
+            questaoAtual.capitulo,
+
+        tipo:
+            questaoAtual.tipo
 
     });
 
 
-    if (correta) {
+    /*
+    ------------------------------------------------------
+    Atualiza estatísticas simples
+    ------------------------------------------------------
+    */
 
-        sessaoQuestionario.acertos++;
+    if (!motorAtivo) {
 
-    } else {
+        if (correta) {
 
-        sessaoQuestionario.erros++;
+            sessaoQuestionario.acertos++;
+
+        } else {
+
+            sessaoQuestionario.erros++;
+
+        }
 
     }
 
 
     /*
+    ------------------------------------------------------
+    Envia resposta para o motor adaptativo
+    ------------------------------------------------------
+    */
+
+    if (motorAtivo) {
+
+        EstudaIAAdaptativo.registrarResposta(
+
+            sessaoQuestionario,
+
+            questaoAtual,
+
+            correta
+
+        );
+
+    }
+
+
+    /*
+    ------------------------------------------------------
     Mostra feedback
+    ------------------------------------------------------
     */
 
     mostrarFeedback(
+
         correta,
+
         indice
+
     );
 
 }
@@ -359,8 +541,11 @@ FEEDBACK
 */
 
 function mostrarFeedback(
+
     correta,
+
     respostaEscolhida
+
 ) {
 
     const area =
@@ -376,19 +561,24 @@ function mostrarFeedback(
 
 
     /*
-    Marca a resposta correta
+    ------------------------------------------------------
+    Destaca resposta correta
+    ------------------------------------------------------
     */
 
     if (
         questaoAtual &&
-        questaoAtual.alternativas
+        Array.isArray(
+            questaoAtual.alternativas
+        )
     ) {
 
         botoes.forEach(
-            (
+
+            function(
                 botao,
                 indice
-            ) => {
+            ) {
 
                 if (
                     indice ===
@@ -402,13 +592,16 @@ function mostrarFeedback(
                 }
 
             }
+
         );
 
     }
 
 
     /*
-    Marca resposta errada
+    ------------------------------------------------------
+    Destaca resposta errada
+    ------------------------------------------------------
     */
 
     if (!correta) {
@@ -429,44 +622,57 @@ function mostrarFeedback(
 
 
     /*
-    Texto do feedback
+    ------------------------------------------------------
+    Texto
+    ------------------------------------------------------
     */
 
     let mensagem = "";
 
+
     if (correta) {
 
         mensagem = `
+
             <div class="feedback correto">
 
-                <strong>🎉 Muito bem!</strong>
+                <strong>
+                    🎉 Muito bem!
+                </strong>
 
                 <p>
                     Você acertou!
                 </p>
 
             </div>
+
         `;
 
     } else {
 
         mensagem = `
+
             <div class="feedback errado">
 
-                <strong>💡 Vamos aprender!</strong>
+                <strong>
+                    💡 Vamos aprender!
+                </strong>
 
                 <p>
                     A resposta correta está destacada.
                 </p>
 
             </div>
+
         `;
 
     }
 
 
     /*
+    ------------------------------------------------------
     Explicação
+    ------------------------------------------------------
     */
 
     if (
@@ -482,7 +688,13 @@ function mostrarFeedback(
                 </strong>
 
                 <p>
-                    ${questaoAtual.explicacao}
+
+                    ${escaparHTML(
+                        String(
+                            questaoAtual.explicacao
+                        )
+                    )}
+
                 </p>
 
             </div>
@@ -493,7 +705,9 @@ function mostrarFeedback(
 
 
     /*
-    Botão próxima
+    ------------------------------------------------------
+    Botão próxima questão
+    ------------------------------------------------------
     */
 
     mensagem += `
@@ -511,7 +725,9 @@ function mostrarFeedback(
 
 
     /*
-    Adiciona feedback
+    ------------------------------------------------------
+    Insere feedback
+    ------------------------------------------------------
     */
 
     const feedbackExistente =
@@ -528,6 +744,7 @@ function mostrarFeedback(
     } else {
 
         area.insertAdjacentHTML(
+
             "beforeend",
 
             `
@@ -558,7 +775,31 @@ PRÓXIMA QUESTÃO
 
 function irParaProximaQuestao() {
 
-    sessaoQuestionario.indiceAtual++;
+    if (!sessaoQuestionario) {
+
+        return;
+
+    }
+
+
+    /*
+    ------------------------------------------------------
+    Modo simples
+    ------------------------------------------------------
+    */
+
+    if (!motorAtivo) {
+
+        sessaoQuestionario.indiceAtual++;
+
+    }
+
+
+    /*
+    ------------------------------------------------------
+    Mostra próxima
+    ------------------------------------------------------
+    */
 
     mostrarProximaQuestao();
 
@@ -573,23 +814,68 @@ FINALIZAR QUESTIONÁRIO
 
 function finalizarQuestionario() {
 
+    if (!sessaoQuestionario) {
+
+        return;
+
+    }
+
+
     sessaoQuestionario.finalizado =
         true;
 
 
-    const total =
-        sessaoQuestionario.questoes.length;
+    let total = 0;
+
+    let acertos = 0;
+
+    let erros = 0;
 
 
-    const acertos =
-        sessaoQuestionario.acertos;
+    /*
+    ------------------------------------------------------
+    Obtém resultado do motor
+    ------------------------------------------------------
+    */
+
+    if (motorAtivo) {
+
+        const relatorio =
+            EstudaIAAdaptativo.gerarRelatorio(
+                sessaoQuestionario
+            );
+
+
+        total =
+            relatorio.totalQuestoes;
+
+        acertos =
+            relatorio.acertos;
+
+        erros =
+            relatorio.erros;
+
+    } else {
+
+        total =
+            sessaoQuestionario.questoes.length;
+
+        acertos =
+            sessaoQuestionario.acertos;
+
+        erros =
+            sessaoQuestionario.erros;
+
+    }
 
 
     const percentual =
         total > 0
+
             ? Math.round(
                 (acertos / total) * 100
             )
+
             : 0;
 
 
@@ -597,6 +883,13 @@ function finalizarQuestionario() {
         document.getElementById(
             "area-questionario"
         );
+
+
+    if (!area) {
+
+        return;
+
+    }
 
 
     area.innerHTML = `
@@ -627,13 +920,17 @@ function finalizarQuestionario() {
             <p>
 
                 Você acertou
+
                 <strong>
                     ${acertos}
                 </strong>
+
                 de
+
                 <strong>
                     ${total}
                 </strong>
+
                 questões.
 
             </p>
@@ -643,7 +940,9 @@ function finalizarQuestionario() {
 
                 <div>
 
-                    <span>✅</span>
+                    <span>
+                        ✅
+                    </span>
 
                     <strong>
                         ${acertos}
@@ -658,10 +957,12 @@ function finalizarQuestionario() {
 
                 <div>
 
-                    <span>❌</span>
+                    <span>
+                        ❌
+                    </span>
 
                     <strong>
-                        ${sessaoQuestionario.erros}
+                        ${erros}
                     </strong>
 
                     <small>
@@ -687,6 +988,20 @@ function finalizarQuestionario() {
     `;
 
 
+    /*
+    ------------------------------------------------------
+    Salva sessão
+    ------------------------------------------------------
+    */
+
+    if (motorAtivo) {
+
+        EstudaIAAdaptativo.salvarSessao(
+            sessaoQuestionario
+        );
+
+    }
+
 }
 
 
@@ -698,8 +1013,26 @@ REINICIAR
 
 function reiniciarQuestionario() {
 
+    if (!bancoAtual.length) {
+
+        return;
+
+    }
+
+
+    const quantidade =
+        sessaoQuestionario &&
+        sessaoQuestionario.quantidadeTotal
+            ? sessaoQuestionario.quantidadeTotal
+            : 20;
+
+
     iniciarQuestionario(
-        bancoAtual
+
+        bancoAtual,
+
+        quantidade
+
     );
 
 }
@@ -716,6 +1049,51 @@ function obterResultadoQuestionario() {
     if (!sessaoQuestionario) {
 
         return null;
+
+    }
+
+
+    if (motorAtivo) {
+
+        const relatorio =
+            EstudaIAAdaptativo.gerarRelatorio(
+                sessaoQuestionario
+            );
+
+
+        return {
+
+            total:
+                relatorio.totalQuestoes,
+
+            acertos:
+                relatorio.acertos,
+
+            erros:
+                relatorio.erros,
+
+            percentual:
+                relatorio.percentual,
+
+            respostas:
+                respostasSessao,
+
+            nivelFinal:
+                relatorio.nivelFinal,
+
+            nivelFinalNome:
+                relatorio.nivelFinalNome,
+
+            desempenhoNiveis:
+                relatorio.desempenhoNiveis,
+
+            desempenhoConteudos:
+                relatorio.desempenhoConteudos,
+
+            desempenhoTipos:
+                relatorio.desempenhoTipos
+
+        };
 
     }
 
@@ -737,3 +1115,48 @@ function obterResultadoQuestionario() {
     };
 
 }
+
+
+/*
+==========================================================
+SEGURANÇA
+==========================================================
+*/
+
+function escaparHTML(texto) {
+
+    return texto
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/*
+==========================================================
+FIM
+==========================================================
+*/
